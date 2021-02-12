@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 # The default docker-compose file for local development
 
@@ -15,7 +15,6 @@ version: '3'
 # development needs and so is the default docker-compose option.
 
 services:
-
   app:
     restart: always
     build: .
@@ -51,8 +50,6 @@ services:
       POSTGRES_USER: storymap
       POSTGRES_DB: storymap
       POSTGRES_PASSWORD: storymap
-    ports:
-      - "5432:5432"
     volumes:
       - ./.pgdata:/var/lib/postgresql/data/
 
@@ -68,6 +65,5 @@ services:
     volumes:
       - ./.localstack:/tmp/localstack
       - /var/run/docker.sock:/var/run/docker.sock
-
 #volumes:
 #  mongodata:

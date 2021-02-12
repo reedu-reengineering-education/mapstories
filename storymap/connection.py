@@ -47,7 +47,7 @@ def migrate_pg(drop_table=False):
             cursor.execute('DROP TABLE IF EXISTS users;')
             cursor.execute(
                 "CREATE TABLE IF NOT EXISTS users " \
-                "(id serial PRIMARY KEY, uid varchar(32), uname varchar(100), " \
+                "(id serial PRIMARY KEY, uid varchar(36), uname varchar(100), " \
                 "migrated smallint, storymaps jsonb, " \
                 "CONSTRAINT unique_uid UNIQUE (uid))")
         _pg_conn.commit()

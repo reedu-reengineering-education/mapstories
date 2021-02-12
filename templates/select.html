@@ -27,35 +27,8 @@
   #entry_login {
     display: block;
     margin: 2em auto;
-    background-image: url("{{STATIC_URL}}img/google/1x/btn_google_signin_dark_normal_web.png");
     width: 191px;
     height: 46px;
-  }
-
-  #entry_login:focus,#entry_login:hover {
-    background-image: url("{{STATIC_URL}}img/google/1x/btn_google_signin_dark_focus_web.png");
-  }
-
-  #entry_login:active {
-    background-image: url("{{STATIC_URL}}img/google/1x/btn_google_signin_dark_pressed_web.png");
-  }
-
-  @media
-  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    #entry_login {
-      background-image: url("{{STATIC_URL}}img/google/2x/btn_google_signin_dark_pressed_web@2x.png");
-      background-size: 191px 46px;
-    }
-
-    #entry_login:focus,#entry_login:hover {
-      background-image: url("{{STATIC_URL}}img/google/2x/btn_google_signin_dark_focus_web@2x.png");
-      background-size: 191px 46px;
-    }
-
-    #entry_login:active {
-      background-image: url("{{STATIC_URL}}img/google/2x/btn_google_signin_dark_pressed_web@2x.png");
-      background-size: 191px 46px;
-    }
   }
 
 
@@ -81,12 +54,13 @@
         <div class="entry-panel entry-login hide">
             <div>
                 <div>
-                    <a id="entry_login" href="{{ url_for('google_auth_start') }}" ></a>
+                    <a id="entry_login" href="{{ url_for('fusion_auth_start') }}">Einloggen oder registrieren</a>
+                    <!-- <a id="entry_login" href="{{ url_for('google_auth_start') }}" ></a>
                     <p class="ui-note">The StoryMapJS editor uses your Google account for logging in,
                       so that only you can edit your projects, and
                       so that you don't need to remember another password.
                       <br>[ <a href="/#privacy">learn more</a> ]
-                    </p>
+                    </p> -->
                 </div>
             </div>
         </div>

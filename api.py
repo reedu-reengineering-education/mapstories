@@ -39,6 +39,29 @@ app = Flask(__name__)
 app.config.from_envvar('FLASK_SETTINGS_FILE')
 settings = sys.modules[settings_module]
 
+app.secret_key = '!secret'
+# app.config.from_object('config')
+
+fa_client_id = os.environ.get('FUSIONAUTH_CLIENT_ID')
+fa_client_secret = os.environ.get('FUSIONAUTH_CLIENT_SECRET')
+fa_api_base_url = os.environ.get('FUSIONAUTH_API_BASE_URL')
+fa_server_metadata_url = os.environ.get('FUSIONAUTH_SERVER_METADATA_URL')
+fa_logout_url = os.environ.get('FUSIONAUTH_LOGOUT_URL')
+
+from authlib.integrations.flask_client import OAuth
+oauth = OAuth(app)
+
+oauth.register(
+    name='fusion',
+    client_id=fa_client_id,
+    client_secret=fa_client_secret,
+    api_base_url=fa_api_base_url,
+    server_metadata_url=fa_server_metadata_url,
+    client_kwargs={
+        'scope': 'openid'
+    }
+)
+
 if settings.LOCAL_STORAGE_MODE:
     from storymap import local_storage as storage
 else:
@@ -222,6 +245,65 @@ def google_auth_start():
     authorize_url = flow.step1_get_authorize_url()
     app.logger.info("google_auth_start url: {}".format(authorize_url))
     return redirect(authorize_url)
+
+@app.route("/fusion/auth/start/", methods=['GET', 'POST'])
+def fusion_auth_start():
+    """Initiate fusion authorization"""
+    redirect_uri=url_for('fusion_auth_verify', _external=True)
+    app.logger.info("fusion_auth_start url: {}".format(redirect_uri))
+    return oauth.fusion.authorize_redirect(redirect_uri)
+
+@app.route("/fusion/auth/verify/", methods=['GET', 'POST'])
+def fusion_auth_verify():
+    """Finalize fusion authorization"""
+    try:
+        if 'error' in request.args:
+            raise Exception(_format_err(
+                'Error getting authorization', request.args.get('error')))
+
+
+        token = oauth.fusion.authorize_access_token()
+        app.logger.info(token)
+
+        resp = oauth.fusion.get('/oauth2/userinfo')
+        profile = resp.json()
+        app.logger.info(profile)
+
+        uid = profile['sub']
+
+        info = {
+            'id': uid,
+            'name': profile['email'],
+            'credentials': token
+        }
+        if not info['id']:
+            raise Exception('Could not get Fusion user ID')
+
+        # Upsert user record
+        user = get_user(uid)
+        if user:
+            user['fusion'] = info
+        else:
+            user = {
+                'uid': uid,
+                'migrated': 0,
+                'storymaps': {},
+                'fusion': info
+            }
+        user['uname'] = info['name']
+        save_user(user)
+
+        # Update session
+        session['uid'] = uid
+        url = url_for('select')
+
+        app.logger.info("fusion_auth_verify url: {}".format(url))
+
+        return redirect(url)
+
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)})
 
 @app.route("/google/auth/verify/", methods=['GET', 'POST'])
 def google_auth_verify():
@@ -776,7 +858,8 @@ def examples(name):
 @app.route("/logout/")
 def logout():
     _session_pop('uid')
-    return redirect('https://www.google.com/accounts/Logout')
+    return redirect(fa_logout_url)
+    # return redirect('https://www.google.com/accounts/Logout')
 
 @app.route("/userinfo/")
 def userinfo():
