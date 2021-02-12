@@ -19,7 +19,7 @@ services:
     restart: always
     build: .
     ports:
-      - "443:5000"
+      - "5443:5000"
     links:
       #- mongo:mongo
       - localstack:localstack

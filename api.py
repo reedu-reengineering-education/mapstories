@@ -1065,11 +1065,11 @@ if __name__ == '__main__':
 
     ssl_context = None
     port = 5000
-    app.run(host='0.0.0.0', port=port, debug=True, ssl_context='adhoc')
+    app.run(host='0.0.0.0', port=port, debug=True)
     exit()
 
     # Experimenting with using Flask's scarcely documented 'adhoc' ssl context
-    app.run(host='0.0.0.0', port=port, debug=True, ssl_context='adhoc')
+    # app.run(host='0.0.0.0', port=port, debug=True, ssl_context='adhoc')
 
     #try:
     #    opts, args = getopt.getopt(sys.argv[1:], "sp:", ["port="])
