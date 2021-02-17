@@ -79,13 +79,13 @@
 <!-- list panel -->
         <div class="entry-panel entry-list hide">
             <div class="table-header">
-                <strong>Your StoryMaps </strong>
+                <strong>Deine Mapstories </strong>
                 <div class="table-toggles">
                     <div class="btn-group" data-toggle="buttons-radio">
                         <button id="entry_sort_title" type="button" class="btn btn-small active" onclick="$('#entry_modal').trigger('display_list', 'title');">
-                            Title <i class="icon-angle-up"></i></button>
+                            Titel <i class="icon-angle-up"></i></button>
                         <button id="entry_sort_date" type="button" class="btn btn-small" onclick="$('#entry_modal').trigger('display_list', 'date');">
-                            Date <i class="icon-angle-down"></i></button>
+                            Datum <i class="icon-angle-down"></i></button>
                     </div>
                 </div>
                 <div style="clear:both;"></div>
@@ -127,7 +127,7 @@
 <!-- FOOTER -->
     <div class="modal-footer">
         <div id="entry_user_info" class="hide">
-            <span id="entry_user_name"></span> | <a id="entry_logout" href="{{ url_for('logout') }}">Logout</a>
+            <span id="entry_user_name"></span> | <a id="entry_logout" href="{{ url_for('logout') }}">Abmelden</a>
         </div>
         <span>&nbsp;</span>
         <a id="entry_create_cancel" class="entry-panel entry-create entry-import entry-rename entry-copy hide btn" onclick="$('#entry_modal').trigger('show_list');">
@@ -138,7 +138,7 @@
         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
         #}
         <a id="new_storymap" class="entry-panel entry-list hide btn btn-success" href="javascript:;" onclick="$('#entry_modal').trigger('show_create_map');">
-            <i class="icon-file "></i> New</a>
+            <i class="icon-file "></i> Neu</a>
         <a id="entry_rename" class="entry-panel entry-rename hide btn btn-success" href="javascript:;">
             Rename</a>
         <a id="entry_copy" class="entry-panel entry-copy hide btn btn-success" href="javascript:;">
@@ -184,14 +184,14 @@
 </div>
 <a class="title" href="{{ url_for('edit') }}?id=<%= id %>"><%= title %></a>
 <% if(published_on) { %>
-<p class="modded">Published on <%= format_dt(published_on) %></p>
+<p class="modded">Veröffentlicht am <%= format_dt(published_on) %></p>
 <% } %>
 <% if(draft_on > published_on) { %>
 <p class="modded">
 <% if(published_on) { %>
 <i class="icon-warning-sign" title="This draft is newer than the most recently published version."></i>
 <% } %>
-Edited on <%= format_dt(draft_on) %>
+Bearbeitet am <%= format_dt(draft_on) %>
 <% } %>
 </p>
 </td>

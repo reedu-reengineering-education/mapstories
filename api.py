@@ -843,6 +843,10 @@ def index():
         production = False
     return render_template('index.html', production=production)
 
+@app.route("/impressum/")
+def impressum():
+    return render_template('impressum.html')
+
 @app.route("/gigapixel/")
 def gigapixel():
     return render_template('gigapixel.html')
