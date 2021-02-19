@@ -218,7 +218,7 @@ VCO.Map = VCO.Class.extend({
 									}
 								}
 								if(marker.data.line){
-									this._line_active.setStyle({'color': marker.data.line.color, 'dashArray': null});
+									this._line_active.setStyle({'color': marker.data.line.color, 'dashArray': null, 'weight': marker.data.line.width*2});
 								}
 								lines_array.push({
 									lat:marker.data.location.lat,
