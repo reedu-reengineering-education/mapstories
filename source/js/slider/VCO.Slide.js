@@ -18,6 +18,7 @@ VCO.Slide = VCO.Class.extend({
 			container: {},
 			scroll_container: {},
 			background: {},
+			line: {},
 			content_container: {},
 			content: {},
 			call_to_action: null
@@ -42,7 +43,12 @@ VCO.Slide = VCO.Class.extend({
 				image: false,
 				color: false,
 				color_value :""
+			},			
+			line: {
+				color: false,
+				width: false
 			}
+
 		}
 		
 		this.has.title = title_slide;
@@ -196,6 +202,16 @@ VCO.Slide = VCO.Class.extend({
 				this._el.container.className 				+= ' vco-text-background';
 			}
 			
+		} 
+		if (this.data.line) {
+			
+			if (this.data.line.color) {
+				this.has.line.color 					= true;
+				this.has.line.width 					= true;
+				this._el.container.className 				+= ' vco-full-color-background';
+				this.has.line.color_value 			= this.data.line.color;
+				this.has.line.width_value 			= this.data.line.width;
+			}
 		} 
 		
 		
