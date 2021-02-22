@@ -9,7 +9,8 @@ VCO.Media.Text = VCO.Class.extend({
 		content: {},
 		headline: {},
 		date: {},
-		start_btn: {}
+		start_btn: {},
+		distance: {}
 	},
 	
 	// Data
@@ -131,8 +132,8 @@ VCO.Media.Text = VCO.Class.extend({
 		}
 
 		if (this.options.distance != "") {
-			this._el.headline				= VCO.Dom.create("div", "distance", this._el.content_container);
-			this._el.headline.innerHTML		= this.options.distance;
+			this._el.distance				= VCO.Dom.create("div", "distance", this._el.content_container);
+			this._el.distance.innerHTML		= this.options.distance;
 
 		}
 		
