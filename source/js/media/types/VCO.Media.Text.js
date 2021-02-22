@@ -21,7 +21,8 @@ VCO.Media.Text = VCO.Class.extend({
 	
 	// Options
 	options: {
-		title: 			false
+		title: 			false,
+		distance: ""
 	},
 	
 	/*	Constructor
@@ -127,6 +128,12 @@ VCO.Media.Text = VCO.Class.extend({
 			this._el.content				= VCO.Dom.create("div", "vco-text-content", this._el.content_container);
 			this._el.content.innerHTML		= text_content;
 			
+		}
+
+		if (this.options.distance != "") {
+			this._el.headline				= VCO.Dom.create("div", "distance", this._el.content_container);
+			this._el.headline.innerHTML		= this.options.distance;
+
 		}
 		
 		
