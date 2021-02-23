@@ -349,12 +349,12 @@ VCO.StorySlider = VCO.Class.extend({
 			duration: 1000,
 			easing: 'swing',
 			step: function() {
-				$('.distance').text(this.Counter.toFixed(0));
+				$('.distance').text(this.Counter.toFixed(0)+' km');
 			}
 		});
 		//DIRTY HACK
 		setTimeout(function(){
-			$('.distance').text(distance.toFixed(0));
+			$('.distance').text(distance.toFixed(0) + ' km');
 		}, 1006)
 		this.currentDistance = distance;
 	},
