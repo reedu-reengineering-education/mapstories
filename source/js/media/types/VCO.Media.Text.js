@@ -23,7 +23,7 @@ VCO.Media.Text = VCO.Class.extend({
 	// Options
 	options: {
 		title: 			false,
-		distance: ""
+		distance:       ''
 	},
 	
 	/*	Constructor
@@ -33,6 +33,7 @@ VCO.Media.Text = VCO.Class.extend({
 		VCO.Util.setData(this, data);
 		
 		// Merge Options
+		console.log(options);
 		VCO.Util.mergeData(this.options, options);
 		
 		this._el.container = VCO.Dom.create("div", "vco-text");

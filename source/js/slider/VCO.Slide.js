@@ -53,6 +53,7 @@ VCO.Slide = VCO.Class.extend({
 		}
 		
 		this.has.title = title_slide;
+		this.has.distance = options.distance;
 		
 		this.title = "";
 		

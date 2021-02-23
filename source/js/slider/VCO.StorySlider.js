@@ -247,8 +247,9 @@ VCO.StorySlider = VCO.Class.extend({
 				this.showNav(this._nav.previous, false);
 			}
 
-			//COmpute Distance
-			this.computeDistance(this.current_slide); 
+			// Compute Distance
+			if(this.data.distance)
+				this.computeDistance(this.current_slide); 
 
 
 			// Preload Slides
@@ -351,6 +352,7 @@ VCO.StorySlider = VCO.Class.extend({
 				$('.distance').text(this.Counter.toFixed(0));
 			}
 		});
+		//DIRTY HACK
 		setTimeout(function(){
 			$('.distance').text(distance.toFixed(0));
 		}, 1006)
