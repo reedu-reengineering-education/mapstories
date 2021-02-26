@@ -22,7 +22,7 @@ DATABASES = {
     #    'PORT': env['DB_PORT__DEFAULT']
     #},
     'pg': {
-        'HOST': env.get('PG_HOST', 'pg'),
+        'HOST': env.get('PG_HOST', 'localhost'),
         'PORT': env.get('PG_PORT', '5432'),
         'NAME': env.get('PG_NAME', 'storymap'),
         'USER': env.get('PG_USER', 'storymap'),

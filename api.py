@@ -13,8 +13,7 @@ import re
 import json
 from functools import wraps
 import urllib
-from urllib.parse import urlparse, urljoin, quote, urlencode
-
+from urlparse import urlparse, urljoin
 # Import settings module
 if __name__ == "__main__":
     if not os.environ.get('FLASK_SETTINGS_MODULE', ''):
@@ -468,7 +467,7 @@ def _parse_url(url):
 
 def _fix_url_for_opengraph(url):
     parts = _parse_url(url)
-    parts['path'] = quote(parts['path'])
+    # parts['path'] = quote(parts['path'])
     return '%(scheme)s://%(netloc)s%(path)s' % parts
 
 
@@ -1069,7 +1068,7 @@ if __name__ == '__main__':
 
     ssl_context = None
     port = 5000
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='localhost', port=port, debug=True)
     exit()
 
     # Experimenting with using Flask's scarcely documented 'adhoc' ssl context
