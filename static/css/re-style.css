@@ -40,6 +40,7 @@ img.re-logo {
 .re-footer-icon-card {
     width: 300px;
     height: 200px;
+    max-width: 100%;
     border-radius: 25px;
     display: flex;
     align-items: center;
@@ -52,6 +53,7 @@ img.re-logo {
 
 .image-link {
     transition: 0.2s;
+    max-width: 350px;
 }
 .image-link:hover {
     transform: scale(1.05);
