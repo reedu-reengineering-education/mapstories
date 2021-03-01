@@ -28,8 +28,9 @@ services:
       - .:/usr/src/apps/StoryMapJS
       - .localstack:/usr/src/apps/StoryMapJS/.localstack
     env_file: .env
-    command: python api.py -s -p 5000
-    # command: gunicorn --workers 3 -b 0.0.0.0:5000 core.wsgi:application
+    environment: 
+      - PG_HOST=pg
+    command: gunicorn --workers 3 -b 0.0.0.0:5000 core.wsgi:application
     depends_on:
       #- mongo
       - pg

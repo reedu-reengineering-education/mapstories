@@ -13,7 +13,15 @@ import re
 import json
 from functools import wraps
 import urllib
-from urlparse import urlparse, urljoin
+
+try:
+    # python2
+    from urlparse import urlparse, urljoin
+except ImportError:
+    # python3
+    from urllib.parse import urlparse, urljoin
+
+
 # Import settings module
 if __name__ == "__main__":
     if not os.environ.get('FLASK_SETTINGS_MODULE', ''):
