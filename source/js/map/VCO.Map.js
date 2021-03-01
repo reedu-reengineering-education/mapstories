@@ -189,7 +189,7 @@ VCO.Map = VCO.Class.extend({
 						if (this.options.line_follows_path) {
 							if (this.options.show_history_line && marker.data.real_marker && this._markers[previous_marker].data.real_marker) {
 								var lines_array = [],
-									line_num = previous_marker,
+									line_num = marker.marker_number-1,
 									point;
 							
 								if (line_num < this.current_marker) {
@@ -217,7 +217,9 @@ VCO.Map = VCO.Class.extend({
 										line_num--;
 									}
 								}
-						
+								if(marker.data.line){
+									this._line_active.setStyle({'color': marker.data.line.color, 'dashArray': null, 'weight': marker.data.line.width*2});
+								}
 								lines_array.push({
 									lat:marker.data.location.lat,
 									lon:marker.data.location.lon
@@ -378,6 +380,23 @@ VCO.Map = VCO.Class.extend({
 		
 	},
 	
+	_createColoredLines: function(line, slides) {
+		var lines = [];
+		for (var i = 1; i+1 < slides.length; i++) {
+			lines.push(
+				new L.Polyline([slides[i].location, slides[i+1].location], {
+					clickable: false,
+					color: 		slides[i+1].line ? slides[i+1].line.color : this.options.line_color,
+					weight: 	slides[i+1].line ? slides[i+1].line.width * 2 : this.options.line_weight,
+					opacity: 	0.5,
+					dashArray: 	this.options.line_dash,
+					lineJoin: 	this.options.line_join,
+					className: 	"vco-map-line"
+				})
+			)
+		}
+		return lines;
+	},
 	_createLines: function(array) {
 		
 	},

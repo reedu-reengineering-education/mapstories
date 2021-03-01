@@ -564,10 +564,12 @@ function slides_load(init_callback) {
     var call_to_action = get_storymap_property('call_to_action', false);
     $('input:radio[name="call_to_action"][value="'+call_to_action+'"]').prop('checked', true);
     if(call_to_action) {
-       $('#call_to_action_text').show().val(get_storymap_property('call_to_action_text', ''));
+        $('#call_to_action_text').show().val(get_storymap_property('call_to_action_text', ''));
     } else {
-       $('#call_to_action_text').hide();
+        $('#call_to_action_text').hide();
     }
+    var showDistance = get_storymap_property('distance', false);
+    $('input:radio[name="show_distance"][value="'+showDistance+'"]').prop('checked', true);
 
     document.getElementById('map').style.backgroundColor =
         _storymap_data.storymap.map_background_color || _default_data.storymap.map_background_color;
@@ -897,6 +899,14 @@ $(function() {
                 } else {
                     $('#call_to_action_text').hide();
                 }
+            }
+        })
+        .on('click', "input[name='show_distance']", function() {
+            var value = ($(this).val() == "true");
+
+            if(value != get_storymap_property('distance', false)) {
+                _storymap_data.storymap.distance = value;
+                storymap_dirty(1);
             }
         })
         .on('change', '#call_to_action_text', function() {
@@ -1231,6 +1241,43 @@ $(function() {
             }
         }
     });
+    $('#line_width').change(function(event){
+        _slides[_current_slide_index].line = $.extend(true,
+                        _slides[_current_slide_index].line,
+                        {width: event.target.value}
+        );
+        storymap_dirty(1);
+    })
+    $('#line_color').minicolors({
+        control: 'hue',
+        opacity: true,
+        theme: 'bootstrap',
+        hide: function() {
+            var color = $(this).val();
+
+            if(color) {
+                var rgb = $(this).minicolors('rgbObject');
+                var opacity = parseInt(rgb.a * 100, 10);
+
+                _slides[_current_slide_index].line = $.extend(true,
+                        _slides[_current_slide_index].line,
+                        {color: color, opacity: opacity, width: 0}
+                    );
+                $('#background_color_clear').show();
+            } else {
+                _slides[_current_slide_index].line = {};
+                $('#background_color_clear').hide();
+            }
+            storymap_dirty(1);
+        },
+        change: function(hex, opacity) {
+            if(hex) {
+                $('#background_color_clear').show();
+            } else {
+                $('#background_color_clear').hide();
+            }
+        }
+    });
 
     $('<button id="background_color_clear" type="button" class="close text-input-clear">&times;</button>')
         .insertAfter('#background_color')
@@ -1295,6 +1342,48 @@ $(function() {
         .on('show', function() {
             $(this).trigger('modal_show');
         });
+
+
+
+// ------------------------------------------------------------
+// Line
+// ------------------------------------------------------------
+modal_init($('#line_opt_modal'))
+        .on('upload', function(event, url) {
+            // $(this).trigger('refresh_image_select');
+            // $('#background_url').val(url).change();
+            // $(this).find('.upload-panel').trigger('reset');
+        })
+      
+        .on('modal_show', function(event, error_msg) {
+            var line = _slides[_current_slide_index].line || {};
+            console.log(line)
+            var color = line.color || '';
+            var width = line.width || '';
+            var opacity = (line.opacity || 100) / 100;
+            // var url = background.url || '';
+            $('#line_color').minicolors('value', color);
+            $('#line_color').minicolors('opacity', opacity);
+            console.log(width)
+            $('#line_width option:eq('+ width +')').attr('selected', 'selected')
+
+            if(color) {
+                $('#background_color_clear').show();
+            } else {
+                $('#background_color_clear').hide();
+            }
+
+            // $(this).trigger('refresh_image_select');
+
+            // $('#background_url').val(url);
+
+            // $(this).find('.upload-panel').trigger('reset');
+            // $(this).trigger('reset', error_msg);
+        })
+        .on('show', function() {
+            $(this).trigger('modal_show');
+        });
+
 
 // ------------------------------------------------------------
 // Markers

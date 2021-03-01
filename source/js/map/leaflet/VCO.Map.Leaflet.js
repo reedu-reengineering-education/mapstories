@@ -33,8 +33,10 @@ VCO.Map.Leaflet = VCO.Map.extend({
 		}
 		// Create Overall Connection Line
 		this._line = this._createLine(this._line);
-		this._line.setStyle({color:this.options.line_color_inactive});
-		this._addLineToMap(this._line);
+		// this._line.setStyle({color:this.options.line_color_inactive});
+		// this._addLineToMap(this._line);
+		this._coloredLines = this._createColoredLines(this._line, this.data.slides);
+		this._addLinesToMap(this._coloredLines);
 
 		// Create Active Line
 		this._line_active = this._createLine(this._line_active);
@@ -401,6 +403,13 @@ VCO.Map.Leaflet = VCO.Map.extend({
 	_addLineToMap: function(line) {
 		this._map.addLayer(line);
 	},
+	_addLinesToMap: function(lines) {
+		for(var i = 0; i < lines.length; i++){
+			this._map.addLayer(lines[i]);
+		}
+	},
+
+
 
 	_addToLine: function(line, d) {
 		line.addLatLng({lon: d.location.lon, lat: d.location.lat});

@@ -6574,6 +6574,7 @@ VCO.Slide = VCO.Class.extend({
 		}
 		
 		this.has.title = title_slide;
+		this.has.distance = options.distance;
 		
 		this.title = "";
 		
@@ -6755,7 +6756,7 @@ VCO.Slide = VCO.Class.extend({
 		
 		// Create Text
 		if (this.has.text || this.has.headline) {
-			this._text = new VCO.Media.Text(this.data.text, {title:this.has.title});
+			this._text = new VCO.Media.Text(this.data.text, {title:this.has.title, distance: this.has.distance});
 		}
 		
 		// Add to DOM

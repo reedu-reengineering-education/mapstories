@@ -18,9 +18,11 @@ VCO.Slide = VCO.Class.extend({
 			container: {},
 			scroll_container: {},
 			background: {},
+			line: {},
 			content_container: {},
 			content: {},
-			call_to_action: null
+			call_to_action: null,
+			distance: null
 		};
 	
 		// Components
@@ -42,10 +44,16 @@ VCO.Slide = VCO.Class.extend({
 				image: false,
 				color: false,
 				color_value :""
+			},			
+			line: {
+				color: false,
+				width: false
 			}
+
 		}
 		
 		this.has.title = title_slide;
+		this.has.distance = options.distance;
 		
 		this.title = "";
 		
@@ -56,7 +64,8 @@ VCO.Slide = VCO.Class.extend({
 			date: 					null,
 			location: 				null,
 			text: 					null,
-			media: 					null
+			media: 					null,
+			distance:				null
 		};
 	
 		// Options
@@ -68,7 +77,8 @@ VCO.Slide = VCO.Class.extend({
 			width: 				600,
 			height: 			600,
 			skinny_size: 		650,
-			media_name: 		""
+			media_name: 		"",
+			distance: false,
 		};
 		
 		// Actively Displaying
@@ -196,6 +206,17 @@ VCO.Slide = VCO.Class.extend({
 				this._el.container.className 				+= ' vco-text-background';
 			}
 			
+		}
+		
+		if (this.data.line) {
+			
+			if (this.data.line.color) {
+				this.has.line.color 					= true;
+				this.has.line.width 					= true;
+				this._el.container.className 				+= ' vco-full-color-background';
+				this.has.line.color_value 			= this.data.line.color;
+				this.has.line.width_value 			= this.data.line.width;
+			}
 		} 
 		
 		
@@ -227,7 +248,7 @@ VCO.Slide = VCO.Class.extend({
 		
 		// Create Text
 		if (this.has.text || this.has.headline) {
-			this._text = new VCO.Media.Text(this.data.text, {title:this.has.title});
+			this._text = new VCO.Media.Text(this.data.text, {title:this.has.title, distance: this.data.distance});
 		}
 		
 		// Add to DOM

@@ -268,6 +268,20 @@
                             <input id="zoomify_attribution" type="text" class="span5">
                         </div>
                     </div>
+                    <div class="control-group">
+                        <label class="control-label">Show Distance</label>
+                        <div class="controls">
+                            <label class="radio inline">
+                                <input type="radio" name="show_distance" value="true">
+                                Yes
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" name="show_distance" value="false">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
                     <!-- <div class="control-group zoomify-control-group">
                         <div class="controls">
                             <div class="input-prepend">
@@ -473,6 +487,35 @@
                 <p><span class="modal-msg"></span>...</p>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Line //-->
+<div id="line_opt_modal" class="modal hide fade" data-backdrop="static">
+    <div class="modal-header">
+        <h4>Line Color</h4>
+    </div>
+    <div class="modal-body" style="min-height: 260px;">
+        <!-- error -->
+        <div class="modal-error hide">
+            <span class="modal-msg error"></span>
+        </div>
+        <p>
+        <label><strong>Line Color</strong></label>
+        <input id="line_color" type="text" placeholder="#ffffff">
+        </p>
+        <p>
+        <label><strong>Line Width</strong></label>
+        <select id="line_width">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
     </div>
 </div>
 
