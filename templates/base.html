@@ -5,9 +5,9 @@
 {% block head %}
     {% include "_head.html" %}
 {% endblock head %}
-<link rel="stylesheet" href="/build/css/storymap.css?v2">
+<link rel="stylesheet" href="/compiled/css/storymap.css?v2">
 <link rel="stylesheet" href="{{ STATIC_URL }}css/re-style.css">
-<script type="text/javascript" src="/build/js/storymap-min.js"></script>
+<script type="text/javascript" src="/compiled/js/storymap-min.js"></script>
 </head>
 
 <body>
@@ -20,8 +20,8 @@
     {% include "_footer.html" %}
 {% endblock footer %}
 
-<!-- {% block scripts %}
+{% block scripts %}
     <script src="https://cdn.knightlab.com/libs/orangeline/latest/js/main.js"></script>
-{% endblock scripts %} -->
+{% endblock scripts %}
 </body>
 </html>

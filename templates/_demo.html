@@ -1,22 +1,31 @@
 
       <link rel="stylesheet" href="//cdn.knightlab.com/libs/storymapjs/latest/css/fonts/font.pt.css">
+        <div class="container"  style="margin-top: 2rem; margin-bottom: 4rem">
+          <p>
+            Mapstories.de ermöglicht es dir, Geschichten rund um die Welt zu
+            erzählen! Im Sinne des Storytellings bietet dir dieses kostenlose Tool
+            vielfältige Optionen, um globale Zusammenhänge mithilfe verschiedener
+            Stationen auf einer Karte zu veranschaulichen. Damit werden deine
+            Geschichten ortsbezogen strukturiert sowie interaktiv erfahrbar.
+          </p>
+        </div>
         <section id="demo" class="container-fluid">
           <div id="homepage-storymap">
           </div>
         </section>
         <script>
           var storymap = new VCO.StoryMap('homepage-storymap',
-                                           '{{ STATIC_URL }}demo/demo.json');
+                                           'https://uploads.mapstories.de/uploads.mapstories.de/mapstories/f89908d1-d6cc-4f1e-aad7-bf4ee8263250/un-faire-fussballe/published.json');
 
           var e = $(window).height(),
           t = $("#homepage-storymap");
-          t.height(e - 20);
+          t.height(500);
 
-          $(window).resize(function() {
-             e = $(window).height();
-             t.height(e - 20);
-            storymap.updateDisplay();
-          })
+          // $(window).resize(function() {
+          //    e = $(window).height();
+          //    t.height(e - 20);
+          //   storymap.updateDisplay();
+          // })
         </script>
 
         </section>
