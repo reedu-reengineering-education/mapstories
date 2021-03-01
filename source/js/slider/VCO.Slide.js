@@ -214,8 +214,8 @@ VCO.Slide = VCO.Class.extend({
 				this.has.line.color 					= true;
 				this.has.line.width 					= true;
 				this._el.container.className 				+= ' vco-full-color-background';
-				this.has.line.color_value 			= this.data.line.color;
-				this.has.line.width_value 			= this.data.line.width;
+				this.has.line.color_value 			= this.data.line.color ? this.data.line.color : '#333' ;
+				this.has.line.width_value 			= this.data.line.width ? this.data.line.width : 2;
 			}
 		} 
 		
