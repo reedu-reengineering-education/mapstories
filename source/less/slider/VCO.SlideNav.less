@@ -96,7 +96,12 @@
 	.vco-slidenav-icon {
 		margin-left: 100 - 24px;
 		&:before {
-			content: "\e64f";
+			// content: "\e64f";
+			content: url(/static/img/logos/logo_orange.svg);
+			width: 50px;
+			height: 50px;
+			display: block;
+			margin-right: 12px;
 		}
 	}
 	&:hover {
@@ -112,7 +117,12 @@
 	.vco-slidenav-icon {
 		margin-left: 0px;
 		&:before {
-			content: "\e650";
+			// content: "\e650";
+			content: url(/static/img/logos/logo_orange_left.svg);
+			width: 50px;
+			height: 50px;
+			display: block;
+			margin-right: 12px;
 		}
 	}
 	&:hover {
@@ -246,8 +256,8 @@
 					background-color: @color-foreground;
 					//.translucent-background(@color-background, .85);
 					//.box-shadow(1px 1px 7px rgba(0,0,0,.30));
-					padding:20px;
-					border: 1px solid darken(@color-background,30);
+					padding:10px;
+					// border: 1px solid darken(@color-background,30);
 				}
 			}
 			.vco-slidenav-icon, .vco-slidenav-title, .vco-slidenav-description {
