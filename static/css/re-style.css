@@ -32,12 +32,15 @@ img.re-logo {
     border-bottom: none !important;
 }
 
+.re-footer {
+    background-color: white !important;
+}
+
 
 .re-footer-icon-card {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 200px;
     border-radius: 25px;
-    background-color: #464141;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,4 +48,11 @@ img.re-logo {
 
 .re-footer-icon-card > img {
     margin: unset;
+}
+
+.image-link {
+    transition: 0.2s;
+}
+.image-link:hover {
+    transform: scale(1.05);
 }
