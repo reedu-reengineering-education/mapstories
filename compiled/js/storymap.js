@@ -1,4 +1,4 @@
-/* storymapjs - v2021-03-01-12-17-54 - 2021-03-01
+/* storymapjs - v2021-03-01-14-14-56 - 2021-03-01
  * Copyright (c) 2021 Northwestern University Knight Lab
  */
 
@@ -7005,8 +7005,8 @@ VCO.Slide = VCO.Class.extend({
 				this.has.line.color 					= true;
 				this.has.line.width 					= true;
 				this._el.container.className 				+= ' vco-full-color-background';
-				this.has.line.color_value 			= this.data.line.color;
-				this.has.line.width_value 			= this.data.line.width;
+				this.has.line.color_value 			= this.data.line.color ? this.data.line.color : '#333' ;
+				this.has.line.width_value 			= this.data.line.width ? this.data.line.width : 2;
 			}
 		} 
 		
@@ -16411,7 +16411,10 @@ VCO.Map = VCO.Class.extend({
 									}
 								}
 								if(marker.data.line){
-									this._line_active.setStyle({'color': marker.data.line.color, 'dashArray': null, 'weight': marker.data.line.width*2});
+									this._line_active.setStyle({'color': marker.data.line.color ? marker.data.line.color : '#c34528', 'dashArray': null, 'weight': marker.data.line.width*2});
+								} else {
+									this._line_active.setStyle({'color': '#c34528', 'dashArray': null, 'weight': 3});
+
 								}
 								lines_array.push({
 									lat:marker.data.location.lat,
