@@ -13,7 +13,7 @@ jobs:
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
+        registry: ghcr.io
         repository: ${{ github.repository }}/mapstories
         tag_with_sha: true
         tag_with_ref: true
