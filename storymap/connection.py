@@ -129,10 +129,10 @@ def find_users(uname=None, uname__like=None, uid=None, migrated=None,
             params.append(uname)
         elif uname__like is not None:
             query += SQL('uname ILIKE %s')
-            params.append(f'%{uname__like}%')
+            params.append('%{}%'.format(uname__like))
     if migrated is not None:
         conj = 'AND' if any([uname, uname__like, uid]) else 'WHERE'
-        query += SQL(f' {conj} migrated=%s')
+        query += SQL(' {} migrated=%s'.format(conj))
         params.append(migrated)
     with _pg_conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cursor:
         q = SQL('SELECT COUNT(*) FROM users WHERE ') + query

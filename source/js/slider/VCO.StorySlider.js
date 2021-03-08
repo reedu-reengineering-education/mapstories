@@ -57,6 +57,7 @@ VCO.StorySlider = VCO.Class.extend({
 
 		// Data Object
 		this.data = {};
+		this.currentDistance = 0;
 
 		this.options = {
 			id: 					"",
@@ -246,6 +247,10 @@ VCO.StorySlider = VCO.Class.extend({
 				this.showNav(this._nav.previous, false);
 			}
 
+			// Compute Distance
+			if(this.data.distance)
+				this.computeDistance(this.current_slide); 
+
 
 			// Preload Slides
 			this.preloadTimer = setTimeout(function() {
@@ -327,6 +332,40 @@ VCO.StorySlider = VCO.Class.extend({
 			}
 
 		}
+	},
+
+	computeDistance: function (slide){
+		var coords = [];
+		for(var i=1; i< slide+1; i++){
+			coords.push([this._slides[i].data.location.lat, this._slides[i].data.location.lon])
+		}
+		var distance = 0;
+		for(var i=0; i+1< coords.length; i++){
+			distance+= this.distance(coords[i][0],coords[i][1],coords[i+1][0],coords[i+1][1])
+		}
+		$({ Counter: this.currentDistance }).animate({
+			Counter: distance
+		}, {
+			duration: 1000,
+			easing: 'swing',
+			step: function() {
+				$('.distance').text(this.Counter.toFixed(0)+' km');
+			}
+		});
+		//DIRTY HACK
+		setTimeout(function(){
+			$('.distance').text(distance.toFixed(0) + ' km');
+		}, 1006)
+		this.currentDistance = distance;
+	},
+	distance :function(lat1, lon1, lat2, lon2) {
+		var p = 0.017453292519943295;    // Math.PI / 180
+		var c = Math.cos;
+		var a = 0.5 - c((lat2 - lat1) * p)/2 + 
+				c(lat1 * p) * c(lat2 * p) * 
+				(1 - c((lon2 - lon1) * p))/2;
+	  
+		return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
 	},
 
 	changeBackground: function(bg) {

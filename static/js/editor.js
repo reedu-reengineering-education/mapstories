@@ -61,7 +61,7 @@ function getScriptPath(scriptname) {
 
 function format_dt(dt_string) {
     var m = moment(dt_string);
-    return m.format('ll')+' at '+m.format('LT');
+    return m.format('DD.MM.YYYY')+' um '+m.format('HH:MM') + ' Uhr';
 }
 
 //

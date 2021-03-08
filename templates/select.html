@@ -14,6 +14,7 @@
 <script src="//cdn.knightlab.com/libs/blueline/latest/js/blueline.min.js"></script>
 <!-- === storymap -->
 <link rel="stylesheet" href="{{ CDN_URL }}css/storymap.css?v1">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/re-style.css">
 <!-- === Moment.js -->
 <script src="{{ STATIC_URL }}js/moment.min.js"></script>
 <script src="{{ STATIC_URL }}js/moment-timezone.min.js"></script>
@@ -27,8 +28,7 @@
   #entry_login {
     display: block;
     margin: 2em auto;
-    width: 191px;
-    height: 46px;
+    width: 300px;
   }
 
 
@@ -40,7 +40,7 @@
 
 <div id="ie_modal" class="modal hide fade" data-backdrop="static">
     <div class="modal-body">
-    The StoryMapJS authoring tool is not compatible with Internet Explorer.  Please use a different browser.
+        Dieses Tool ist nicht mit dem Internet Explorer kompatibel. Bitte nutzen Sie einen anderen Browser.
     </div>
 </div>
 
@@ -54,7 +54,13 @@
         <div class="entry-panel entry-login hide">
             <div>
                 <div>
-                    <a id="entry_login" href="{{ url_for('fusion_auth_start') }}">Einloggen oder registrieren</a>
+                    <a  id="entry_login" 
+                        href="{{ url_for('fusion_auth_start') }}"
+                        class="re-button re-login-button"
+                    >
+                        <img src="/static/img/logos/logo_orange.svg" />
+                        Einloggen oder registrieren
+                    </a>
                     <!-- <a id="entry_login" href="{{ url_for('google_auth_start') }}" ></a>
                     <p class="ui-note">The StoryMapJS editor uses your Google account for logging in,
                       so that only you can edit your projects, and
@@ -79,13 +85,13 @@
 <!-- list panel -->
         <div class="entry-panel entry-list hide">
             <div class="table-header">
-                <strong>Your StoryMaps </strong>
+                <strong>Deine Mapstories </strong>
                 <div class="table-toggles">
                     <div class="btn-group" data-toggle="buttons-radio">
                         <button id="entry_sort_title" type="button" class="btn btn-small active" onclick="$('#entry_modal').trigger('display_list', 'title');">
-                            Title <i class="icon-angle-up"></i></button>
+                            Titel <i class="icon-angle-up"></i></button>
                         <button id="entry_sort_date" type="button" class="btn btn-small" onclick="$('#entry_modal').trigger('display_list', 'date');">
-                            Date <i class="icon-angle-down"></i></button>
+                            Datum <i class="icon-angle-down"></i></button>
                     </div>
                 </div>
                 <div style="clear:both;"></div>
@@ -97,29 +103,29 @@
 <!-- create map panel -->
         <div class="entry-panel entry-create-map hide">
             <p>
-                <label>Great!  Let's make a StoryMap.  What do you want to call it?</label>
+                <label>Super! Lass uns eine Mapstory erstellen. Wie soll sie heißen?</label>
                 <input type="text" class="entry-create-title stretch" data-onsubmit="entry_create" />
             </p>
-            <p class="ui-note">Making a gigapixel storymap? Click 'create' and set the details using 'Map Type' in the <i class='icon-cog'></i> options. <br> <a target="_blank" href="http://knightlab.northwestern.edu/2016/05/24/a-few-small-improvements-to-storymapjs/">Read this for more info.</a></p>
+            <!-- <p class="ui-note">Making a gigapixel storymap? Click 'create' and set the details using 'Map Type' in the <i class='icon-cog'></i> options. <br> <a target="_blank" href="http://knightlab.northwestern.edu/2016/05/24/a-few-small-improvements-to-storymapjs/">Read this for more info.</a></p> -->
         </div>
 <!-- import panel -->
         <div class="entry-panel entry-import hide">
             <p>
-                <label>Let's import your StoryMap.  What do you want to call it?</label>
+                <label>Lass uns eine Mapstory importieren. Wie soll sie heißen?</label>
                 <input type="text" class="entry-import-title stretch" data-onsubmit="entry_import" />
             </p>
         </div>
 <!-- rename panel -->
         <div class="entry-panel entry-rename hide">
             <p>
-                <label>Enter a new name for your <strong class="entry-rename-title-old"></strong> StoryMap:</label>
+                <label>Gib deiner <strong class="entry-rename-title-old"></strong> Mapstory einen Namen:</label>
                 <input type="text" class="entry-rename-title stretch" data-onsubmit="entry_rename" />
             </p>
         </div>
 <!-- copy panel -->
         <div class="entry-panel entry-copy hide">
             <p>
-                <label>Enter a name for your copy of <strong class="entry-copy-title-old"></strong> StoryMap:</label>
+                <label>Gib der Kopie deiner <strong class="entry-copy-title-old"></strong> Mapstory einen Namen:</label>
                 <input type="text" class="entry-copy-title stretch" data-onsubmit="entry_copy" />
             </p>
         </div>
@@ -127,24 +133,24 @@
 <!-- FOOTER -->
     <div class="modal-footer">
         <div id="entry_user_info" class="hide">
-            <span id="entry_user_name"></span> | <a id="entry_logout" href="{{ url_for('logout') }}">Logout</a>
+            <span id="entry_user_name"></span> | <a id="entry_logout" href="{{ url_for('logout') }}">Abmelden</a>
         </div>
         <span>&nbsp;</span>
         <a id="entry_create_cancel" class="entry-panel entry-create entry-import entry-rename entry-copy hide btn" onclick="$('#entry_modal').trigger('show_list');">
-            Cancel</a>
+            Abbrechen</a>
         <a id="entry_create" class="entry-panel entry-create hide btn btn-success" href="javascript:;">
-            Create</a>
+            Erstellen</a>
         {# See issue #316
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Abbrechen</button>
         #}
         <a id="new_storymap" class="entry-panel entry-list hide btn btn-success" href="javascript:;" onclick="$('#entry_modal').trigger('show_create_map');">
-            <i class="icon-file "></i> New</a>
+            <i class="icon-file "></i> Neu</a>
         <a id="entry_rename" class="entry-panel entry-rename hide btn btn-success" href="javascript:;">
-            Rename</a>
+            Umbennenen</a>
         <a id="entry_copy" class="entry-panel entry-copy hide btn btn-success" href="javascript:;">
-            Copy</a>
+            Kopieren</a>
         <a id="entry_import" class="entry-panel entry-import hide btn btn-success" href="javascript:;">
-            Import</a>
+            Importieren</a>
     </div>
     <!-- progress -->
     <div class="modal-progress hide">
@@ -160,8 +166,8 @@
         <div>
             <div>
                 <p><span class="modal-msg"></span></p>
-                <button class="btn">No</button>
-                <button class="btn btn-primary">Yes</button>
+                <button class="btn">Nein</button>
+                <button class="btn btn-primary">Ja</button>
             </div>
         </div>
     </div>
@@ -174,24 +180,24 @@
 <td>
 <div style="display: inline;float: right">
     <div class="dropdown">
-    <a class="list-item-options dropdown-toggle" data-toggle="dropdown" href="javascript:" title="Options"><i class="icon-cog icon-large"></i></a>
+    <a class="list-item-options dropdown-toggle" data-toggle="dropdown" href="javascript:" title="Optionen"><i class="icon-cog icon-large"></i></a>
     <ul class="dropdown-menu pull-right" role="menu">
-    <li><a href="javascript:" class="list-item-rename">Rename</a></li>
-    <li><a href="javascript:" class="list-item-copy">Copy</a></li>
-    <li><a href="javascript:" class="list-item-delete">Delete</a></li>
+    <li><a href="javascript:" class="list-item-rename">Umbenennen</a></li>
+    <li><a href="javascript:" class="list-item-copy">Kopieren</a></li>
+    <li><a href="javascript:" class="list-item-delete">Löschen</a></li>
     </ul>
     </div>
 </div>
 <a class="title" href="{{ url_for('edit') }}?id=<%= id %>"><%= title %></a>
 <% if(published_on) { %>
-<p class="modded">Published on <%= format_dt(published_on) %></p>
+<p class="modded">Veröffentlicht am <%= format_dt(published_on) %></p>
 <% } %>
 <% if(draft_on > published_on) { %>
 <p class="modded">
 <% if(published_on) { %>
 <i class="icon-warning-sign" title="This draft is newer than the most recently published version."></i>
 <% } %>
-Edited on <%= format_dt(draft_on) %>
+Bearbeitet am <%= format_dt(draft_on) %>
 <% } %>
 </p>
 </td>
@@ -242,12 +248,12 @@ function make_storymap_list() {
 
 function validate_storymap_name($modal, name) {
     if(!name.length) {
-        $modal.trigger('error_show', 'You must enter a name');
+        $modal.trigger('error_show', 'Sie müssen einen Namen angeben');
         return false;
     }
     for(var i = 0; i < _user.storymaps.length; i++) {
         if(name.toLowerCase() == _user.storymaps[i].title.toLowerCase()) {
-            $modal.trigger('error_show', 'You already have a StoryMap named "'+name+'".');
+            $modal.trigger('error_show', 'Sie haben bereits eine Mapstory mit dem Namen "'+name+'".');
             return false;
         }
     }
@@ -349,7 +355,7 @@ $(function() {
         ajax_post("{{ url_for('storymap_update_meta') }}",
             {id: id, key:'title', value: title},
             function(error) {
-                $modal.trigger('reset', format_error('Error renaming StoryMap', error));
+                $modal.trigger('reset', format_error('Fehler beim umbenennen der Mapstory', error));
             },
             function(data) {
                 _user.storymaps[id].title = title;
@@ -372,12 +378,12 @@ $(function() {
         }
         var id = $(this).attr('storymap-data');
 
-        $modal.trigger('progress_show', 'Copying StoryMap');
+        $modal.trigger('progress_show', 'Kopiere Mapstory');
 
         ajax_get("{{ url_for('storymap_copy') }}",
             {id: id, title: title},
             function(error) {
-                $modal.trigger('reset', format_error('Error copying StoryMap', error));
+                $modal.trigger('reset', format_error('Fehler beim kopieren der Mapstory', error));
             },
             function(data) {
                 _user.storymaps[data.id] = data;
@@ -400,17 +406,17 @@ $(function() {
             return false;
         }
 
-        $modal.trigger('progress_show', 'Importing StoryMap');
+        $modal.trigger('progress_show', 'Importiere Mapstory');
 
         ajax_get(_params.import_url, {},
             function(error) {
-                $modal.trigger('reset', format_error('Error loading storymap', error));
+                $modal.trigger('reset', format_error('Fehler beim Laden der Mapstory', error));
             },
             function(data) {
                 ajax_post("{{ url_for('storymap_create') }}",
                     {title: name, d: JSON.stringify(data)},
                     function(error) {
-                        $modal.trigger('reset', format_error('Error creating StoryMap', error));
+                        $modal.trigger('reset', format_error('Fehler beim Erstellen der Mapstory', error));
                     },
                     function(data) {
                         // Replace history state
@@ -453,7 +459,7 @@ $(function() {
             // Zoomify properties
             var path = $('#entry_create_path').val().trim();
             if(!path.length) {
-                $modal.trigger('error_show', 'You must enter an URL path');
+                $modal.trigger('error_show', 'Sie müssen eine URL angeben');
                 return false;
             }
             if(!path.match(/\/$/)) {
@@ -463,13 +469,13 @@ $(function() {
 
             var width = parseInt($('#entry_create_width').val().trim());
             if(!width || isNaN(width)) {
-                $modal.trigger('error_show', 'Image width must be a positive integer');
+                $modal.trigger('error_show', 'Bitte geben Sie für die Bildbreite eine positive Zahl an');
                 return false;
             }
 
             var height = parseInt($('#entry_create_height').val().trim());
             if(!height || isNaN(height)) {
-                $modal.trigger('error_show', 'Image height must be a positive integer');
+                $modal.trigger('error_show', 'Bitte geben Sie für die Bildhöhe eine positive Zahl an');
                 return false;
             }
 
@@ -480,12 +486,12 @@ $(function() {
             });
         }
 
-        $modal.trigger('progress_show', 'Creating StoryMap');
+        $modal.trigger('progress_show', 'Erstelle Mapstory');
 
         ajax_post("{{ url_for('storymap_create') }}",
             {title: name, d: JSON.stringify(data)},
             function(error) {
-                $modal.trigger('reset', format_error('Error creating StoryMap', error));
+                $modal.trigger('reset', format_error('Fehler beim Erstellen der Mapstory', error));
             },
             function(data) {
                 document.location.href = "{{ url_for('edit') }}?id="+data.id;
@@ -699,14 +705,14 @@ $(function() {
             var id = $tr.attr('storymap-data');
             var item = _user.storymaps[id];
 
-            $modal.trigger('confirm_show', ['Delete <strong>'+item.title+'</strong> StoryMap?', function(yes) {
+            $modal.trigger('confirm_show', ['Mapstory <strong>'+item.title+'</strong> löschen?', function(yes) {
                 if(yes) {
-                    $modal.trigger('progress_show', 'Deleting StoryMap');
+                    $modal.trigger('progress_show', 'Lösche Mapstory');
 
                     ajax_get("{{ url_for('storymap_delete') }}",
                         {id: id},
                         function(error) {
-                            $modal.trigger('error_show', format_error('Error deleting StoryMap', error));
+                            $modal.trigger('error_show', format_error('Fehler beim Löschen der Mapstory', error));
                         },
                         function(data) {
                             _storymap_list.remove(item);

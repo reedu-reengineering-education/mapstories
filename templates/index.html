@@ -1,26 +1,11 @@
 {% extends "base.html" %}
 
-{% block head %}
-    {{ super() }}
-    {% if production %}
-    <meta name="google-site-verification" content="yHVtubwV5TLLx0hNSveCvJU04I4LP3kWK_Zr_0gz3FA" />
-    {% endif %}
-    {% if not production %}
-      <meta name="robots" content="noindex">
-    {% endif %}
-{% endblock head %}
-
 {% block content %}
 {% include "_header.html" %}
 
 <article id="product-body">
     {% include "_demo.html" %}
     {% include "_overview.html" %}
-    {% include "_examples.html" %}
-    {% include "_help.html" %}
 </article>
-
-{% include "_storytelling_tools.html" %}
-
 
 {% endblock content %}
