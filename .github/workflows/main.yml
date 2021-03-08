@@ -12,7 +12,7 @@ jobs:
       uses: docker/build-push-action@v1
       with:
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.CR_PAT }}
         registry: ghcr.io
         repository: ${{ github.repository }}/mapstories
         tag_with_sha: true
