@@ -21,6 +21,26 @@
     color: black !important;
 }
 
+.re-login-button {
+    margin-top: 1rem;
+    box-shadow: 0 0 0 #d7d7d7, -1px 1px 0 #d7d7d7, -2px 2px 0 #d7d7d7, -3px 3px 0 #d7d7d7, -4px 4px 0 #d7d7d7, -5px 5px 0 #d7d7d7, -6px 6px 0 #d7d7d7, 8px 8px 0 transparent;
+    padding: 1.11rem 2.22rem 1.11rem 2.22rem;
+    font-size: 1.11111rem;
+    font-family: BrixSlab !important;
+    transition: all .4s cubic-bezier(0.4,0,0.2,1);
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 4px;
+}
+
+.re-login-button > img {
+    width: 3rem;
+}
+
+.re-login-button:hover {
+    box-shadow: 0 15px 24px rgb(0 0 0 / 22%), 0 19px 76px rgb(0 0 0 / 30%);
+}
+
 img.re-logo {
     width: 100%;
     max-width: 750px;

@@ -27,8 +27,8 @@
         <p class="modal-msg"></p>
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button class="btn btn-primary">Delete</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Abbrechen</button>
+        <button class="btn btn-primary">Löschen</button>
     </div>
 </div>
 
@@ -39,27 +39,27 @@
             <span class="modal-msg error"></span>
         </div>
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#opt_display_tab" data-toggle="tab">Display</a></li>
-            <li><a href="#opt_sharing_tab" data-toggle="tab">Sharing</a></li>
+            <li class="active"><a href="#opt_display_tab" data-toggle="tab">Anzeige</a></li>
+            <li><a href="#opt_sharing_tab" data-toggle="tab">Teilen</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="opt_display_tab">
                 <form class="form-horizontal">
                     <div class="control-group">
-                        <label class="control-label">StoryMap Size</label>
+                        <label class="control-label">Größe</label>
                         <div class="controls">
                             <div class="input-prepend">
-                                <span class="add-on">Width</span>
+                                <span class="add-on">Breite</span>
                                 <input type="text" id="width" value="" class="input-mini">
                             </div>
                              <div class="input-prepend">
-                                <span class="add-on">Height</span>
+                                <span class="add-on">Höhe</span>
                                 <input type="text" id="height" value="" class="input-mini">
                             </div>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Language</label>
+                        <label class="control-label">Sprache</label>
                         <div class="controls">
                             <select id="language">
                                 <option value="en" data-lang="English">English</option>
@@ -94,15 +94,15 @@
                             </select>
                             <a class="help" href="javascript:"
                                 data-placement="left"
-                                data-content="Select the language to use in controls and messages when displaying your StoryMap."
+                                data-content="Wählen Sie die Sprache aus, die in Steuerelementen und Meldungen bei der Anzeige Ihrer Mapstory verwendet werden soll."
                             >&nbsp;<i class="icon-question-sign icon-large"></i></a>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Fonts</label>
+                        <label class="control-label">Schriftart</label>
                         <div class="controls">
                             <select id="font_css">
-                                <option value="">Default</option>
+                                <option value="">Standard</option>
                                 <option value="stock:abril-droidsans">Abril Fatface &amp; Droid Sans</option>
                                 <option value="stock:amatic-andika">Amatic &amp; Andika</option>
                                 <option value="stock:bitter-raleway">Bitter &amp; Raleway</option>
@@ -124,46 +124,46 @@
                             <a class="help" href="javascript:"
                                 data-placement="bottom"
                                 data-html="true"
-                                data-content="Select a font-set for your StoryMap. See below for examples of how the fonts look.<br><img style='margin-top: 5px' src='{{ STATIC_URL }}img/font-options.png'>"
+                                data-content="Wählen Sie die Schriftart für Ihre Mapstory. Weiter unten können Sie Beispiele für Schriftarten sehen.<br><img style='margin-top: 5px' src='{{ STATIC_URL }}img/font-options.png'>"
                             >&nbsp;<i class="icon-question-sign icon-large"></i></a>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Treat As</label>
+                        <label class="control-label">Behandeln als</label>
                         <div class="controls">
                             <label class="radio inline">
                                 <input type="radio" name="map_as_image" value="false" checked>
-                                Cartography
+                                Karte
                             </label>
                             <label class="radio inline">
                                 <input type="radio" name="map_as_image" value="true">
-                                Image
+                                Bild
                             </label>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Call To Action</label>
+                        <label class="control-label">Handlungsaufforderung</label>
                         <div class="controls">
                             <label class="radio inline">
                                 <input type="radio" name="call_to_action" value="true" checked>
-                                Yes
+                                Ja
                             </label>
                             <label class="radio inline">
                                 <input type="radio" name="call_to_action" value="false">
-                                No
+                                Nein
                             </label>
-                            <input type="text" id="call_to_action_text" value="" placeholder="enter text, or use default" class="input-large">
+                            <input type="text" id="call_to_action_text" value="" placeholder="Text eingeben oder Standard verwenden" class="input-large">
                             <a class="help" href="javascript:"
                                 data-placement="left"
                                 data-html="true"
-                                data-content="Choosing this will show a button on your first slide to lead your readers into the story. You can change the words on the button.<br><img style='margin-top: 5px' src='{{ STATIC_URL }}img/calltoaction.png'>"
+                                data-content="Wenn Sie dies auswählen, wird auf Ihrer ersten Folie eine Schaltfläche angezeigt, die Ihre Leser in die Geschichte einführt. Sie können die Wörter auf der Schaltfläche ändern.<br><img style='margin-top: 5px' src='{{ STATIC_URL }}img/calltoaction.png'>"
                             >&nbsp;<i class="icon-question-sign icon-large"></i></a>
-                            <p id="call_to_action_default">Default: "<span id="call_default_text"></span>"</p>
+                            <p id="call_to_action_default">Standard: "<span id="call_default_text"></span>"</p>
                         </div>
                     </div>
         <!-- map -->
                     <div class="control-group map-control-group">
-                        <label class="control-label">Map Type</label>
+                        <label class="control-label">Kartentyp</label>
                         <div class="controls">
                             <select id="map_type_menu" class="span4">
                                 <option value="stamen:toner-lite">Stamen Maps: Toner Lite</option>
@@ -269,15 +269,15 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">Show Distance</label>
+                        <label class="control-label">Distanz anzeigen</label>
                         <div class="controls">
                             <label class="radio inline">
                                 <input type="radio" name="show_distance" value="true">
-                                Yes
+                                Ja
                             </label>
                             <label class="radio inline">
                                 <input type="radio" name="show_distance" value="false">
-                                No
+                                Nein
                             </label>
                         </div>
                     </div>
@@ -305,13 +305,13 @@
                 </form>
             </div>
             <div class="tab-pane" id="opt_sharing_tab">
-                <label>You can modify how your StoryMap appears as part of a tweet or Facebook share by clicking on the "Share" button at the top right.</label>
-                <a id="opt_share" href="javascript:$('#storymap_share').trigger('click');" class="btn btn-primary" >Open Share Settings</a><!-- data-dismiss="modal" -->
+                <label>Sie können ändern, wie Ihre Mapstory als Teil eines Tweets oder eines Facebook Posts erscheint, indem Sie auf die Schaltfläche "Teilen" oben rechts klicken.</label>
+                <a id="opt_share" href="javascript:$('#storymap_share').trigger('click');" class="btn btn-primary" >Teilen Menü öffnen</a><!-- data-dismiss="modal" -->
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <a id="opt_close" href="javascript:;" class="btn btn-primary" >Close</a><!-- data-dismiss="modal" -->
+        <a id="opt_close" href="javascript:;" class="btn btn-primary" >Schließen</a><!-- data-dismiss="modal" -->
     </div>
     <!-- progress -->
     <div class="modal-progress hide">
@@ -327,7 +327,7 @@
 <!-- Editing //-->
 <div id="background_opt_modal" class="modal hide fade" data-backdrop="static">
     <div class="modal-header">
-        <h4>Slide Background</h4>
+        <h4>Hintergrund</h4>
     </div>
     <div class="modal-body">
         <!-- error -->
@@ -335,104 +335,104 @@
             <span class="modal-msg error"></span>
         </div>
         <p>
-        <label><strong>Background Color</strong></label>
+        <label><strong>Hintergrundfarbe</strong></label>
         <input id="background_color" type="text" placeholder="#ffffff">
         </p>
         <p>
-        <label><strong>Background Image</strong></label>
+        <label><strong>Hintergrundbild</strong></label>
         <div class="input-prepend" style="width: 96%;">
             <div class="btn-group">
                 <button class="btn dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                 </button>
                 <ul id="background_image_select" class="image-select dropdown-menu">
-                    <li><a href="javascript:">image 1</a></li>
-                    <li><a href="javascript:">image 2</a></li>
-                    <li><a href="javascript:">image 3</a></li>
+                    <li><a href="javascript:">Bild 1</a></li>
+                    <li><a href="javascript:">Bild 2</a></li>
+                    <li><a href="javascript:">Bild 3</a></li>
 
                 </ul>
             </div>
-            <input type="text" id="background_url" placeholder="<< select an image, or enter an URL">
+            <input type="text" id="background_url" placeholder="<< Wählen Sie ein Bild aus, oder geben Sie eine URL ein">
         </div>
-        <p>or upload an image to your StoryMap folder.</p>
+        <p>oder laden Sie ein Bild in Ihren Mapstories Ordner hoch.</p>
         <div class="upload-panel">
             <form class="form-inline">
             <a class="upload-file-link btn" href="javascript:">
-            Choose File...
+            Datei wählen...
             <input type="file" class="upload-file" accept="image/*" size="40">
             </a>
             &nbsp;<label class="upload-file-name"></label>
-            &nbsp;<a href="javascript:" class="btn btn-success upload pull-right">Upload</a>
+            &nbsp;<a href="javascript:" class="btn btn-success upload pull-right">Hochladen</a>
             </form>
         </div>
         <div class="upload-conflict hide">
-            <p class="error">A file with the same name already exists.</p>
+            <p class="error">Es existiert bereits eine Datei mit demselben Namen.</p>
             <label class="radio upload-conflict-replace">
-                <input type="radio" name="upload_modal_conflict" value="replace">Replace existing file
+                <input type="radio" name="upload_modal_conflict" value="replace">Bestehende Datei ersetzen
             </label>
             <div>
             <label class="radio inline upload-conflict-rename">
-                <input type="radio" name="upload_modal_conflict" value="rename">Save file as:
+                <input type="radio" name="upload_modal_conflict" value="rename">Speichern unter:
                 <input class="upload-rename-as" type="text" size="40">
             </label>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Schließen</button>
     </div>
 </div>
 
 <!-- Markers //-->
 <div id="marker_opt_modal" class="modal hide fade" data-backdrop="static">
     <div class="modal-header">
-        <h4>Map Markers</h4>
+        <h4>Marker</h4>
     </div>
     <div class="modal-body">
         <!-- error -->
         <div class="modal-error hide">
             <span class="modal-msg error"></span>
         </div>
-        <label>Select a custom marker to use on this slide, or reset to use the default.</label>
+        <label>Wählen Sie einen Marker aus, der auf dieser Folie verwendet werden soll oder nutzen Sie den Standardmarker.</label>
         <div class="input-prepend" style="width: 96%;">
             <div class="btn-group">
                 <button class="btn dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                 </button>
                 <ul id="marker_image_select" class="image-select dropdown-menu">
-                    <li><a href="javascript:">image 1</a></li>
-                    <li><a href="javascript:">image 2</a></li>
-                    <li><a href="javascript:">image 3</a></li>
+                    <li><a href="javascript:">Bild 1</a></li>
+                    <li><a href="javascript:">Bild 2</a></li>
+                    <li><a href="javascript:">Bild 3</a></li>
                 </ul>
-                <input id="marker_url" type="text" class="input-large" placeholder="<< select an image, or enter an URL">
+                <input id="marker_url" type="text" class="input-large" placeholder="<< wählen Sie ein Bild oder geben Sie eine URL an">
             </div>
         </div>
-        <p>or upload an new marker to your StoryMap folder.</p>
+        <p>oder laden Sie ein Bild in Ihren Mapstories Ordner hoch.</p>
         <div class="upload-panel">
             <form class="form-inline">
                 <a class="upload-file-link btn" href="javascript:">
-                Choose File...
+                Datei wählen...
                 <input type="file" class="upload-file" accept="image/*" size="40">
                 </a>
                 &nbsp;<label class="upload-file-name"></label>
-                &nbsp;<a href="javascript:" class="btn btn-success upload pull-right">Upload</a>
+                &nbsp;<a href="javascript:" class="btn btn-success upload pull-right">Hochladen</a>
             </form>
         </div>
         <div class="upload-conflict hide">
-            <p class="error">A file with the same name already exists.</p>
+            <p class="error">Es existiert bereits eine Datei mit demselben Namen.</p>
             <label class="radio upload-conflict-replace">
-            <input type="radio" name="upload_modal_conflict" value="replace">Replace existing file
+            <input type="radio" name="upload_modal_conflict" value="replace">Bestehende Datei ersetzen
             </label>
             <div>
                 <label class="radio inline upload-conflict-rename">
-                <input type="radio" name="upload_modal_conflict" value="rename">Save file as:
+                <input type="radio" name="upload_modal_conflict" value="rename">Speichern unter:
                 <input class="upload-rename-as" type="text" size="40">
                 </label>
             </div>
        </div>
     </div>
     <div class="modal-footer">
-        <a id="marker_options_close" href="javascript:;" class="btn btn-primary" data-dismiss="modal">Close</a>
+        <a id="marker_options_close" href="javascript:;" class="btn btn-primary" data-dismiss="modal">Schließen</a>
     </div>
     <!-- progress -->
     <div class="modal-progress hide">
@@ -515,14 +515,14 @@
         </p>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Schließen</button>
     </div>
 </div>
 
 
 <div id="share_modal" class="modal hide fade" data-backdrop="static">
 	<div class="modal-header">
-		<h4>Share This StoryMap</h4>
+		<h4>Mapstory teilen</h4>
 	</div>
 	<div class="modal-body">
 
@@ -533,9 +533,9 @@
         <!-- main -->
 		<div id="share_publish_panel" class="hide">
 			<form class="form-inline">
-				<label><i class="icon-warning-sign"></i> You have unpublished changes:</label>
+				<label><i class="icon-warning-sign"></i> Sie haben unveröffentliche Änderungen:</label>
 					&nbsp;
-				<a id="share_publish" class="btn" href="javascript:;">Publish Changes</a>
+				<a id="share_publish" class="btn" href="javascript:;">Änderungen veröffentlichen</a>
 			</form>
 		</div>
 		<div class="share-link-container">
@@ -544,7 +544,7 @@
 				<input type="text" id="share_url" class="stretch" onfocus="this.select();" onmouseup="return false;">
 			</div>
 			<div class="share-social">
-				<label>Social</label>
+				<label>Soziale Medien</label>
 				<div class="share-social-icons">
 					<a class="share-link-twitter" target="_blank" href="#" title="Share on Twitter">
 						<i class="icon-twitter icon-2x"></i>
@@ -561,69 +561,69 @@
 				</div>
 			</div>
 		</div>
-    <div id="oembed-note">
+    <!-- <div id="oembed-note">
       <p class="note">You can put this link on a line by itself to embed your storymap on <a href="https://medium.com">Medium.com</a> <a href="http://knightlab.northwestern.edu/2016/06/15/knight-lab-tools-now-embeddable-on-medium/" target="_blank"><i class="icon-question-sign icon-large"></i></a></p>
-    </div>
+    </div> -->
 		<div class="share-embed-container">
       <div class="tab-pane" id="opt_sharing_tab">
-          <p class='note'>
+          <!-- <p class='note'>
               Set these values to improve how your StoryMap appears as part of a tweet or Facebook share.
-          </p>
+          </p> -->
           <p>
-          <label><strong>Description</strong></label>
+          <label><strong>Beschreibung</strong></label>
           <textarea id="share_description" class="stretch" rows="3"></textarea>
           </p>
           <p>
-          <label><strong>Featured Image</strong></label>
+          <label><strong>Bild</strong></label>
           <div class="input-prepend" style="width: 96%;">
               <div class="btn-group">
                   <button class="btn dropdown-toggle" data-toggle="dropdown">
                       <span class="caret"></span>
                   </button>
                   <ul id="share_image_select" class="dropdown-menu">
-                      <li><a href="javascript:">image 1</a></li>
-                      <li><a href="javascript:">image 2</a></li>
-                      <li><a href="javascript:">image 3</a></li>
+                      <li><a href="javascript:">Bild 1</a></li>
+                      <li><a href="javascript:">Bild 2</a></li>
+                      <li><a href="javascript:">Bild 3</a></li>
                   </ul>
               </div>
-              <input type="text" id="share_image_url" placeholder="<< select an image, or enter an URL">
+              <input type="text" id="share_image_url" placeholder="<< Wählen Sie ein Bild aus, oder geben Sie eine URL ein">
           </div>
-          <p>or upload an image to your StoryMap folder.</p>
+          <p>oder laden Sie ein Bild in Ihren Mapstories Ordner hoch.</p>
           <div class="upload-panel">
               <form class="form-inline">
               <a class="upload-file-link btn" href="javascript:">
-              Choose File...
+              Datei auswählen...
               <input type="file" class="upload-file" accept="image/*" size="40">
               </a>
               &nbsp;<label class="upload-file-name"></label>
-              &nbsp;<a href="javascript:" class="btn btn-success upload pull-right">Upload</a>
+              &nbsp;<a href="javascript:" class="btn btn-success upload pull-right">Hochladen</a>
               </form>
           </div>
           <div class="upload-conflict hide">
-              <p class="error">A file with the same name already exists.</p>
+              <p class="error">Eine Datei mit diesem Namen existiert bereits.</p>
               <label class="radio upload-conflict-replace">
-                  <input type="radio" name="upload_modal_conflict" value="replace">Replace existing file
+                  <input type="radio" name="upload_modal_conflict" value="replace">Bestehende Datei ersetzen
               </label>
               <div>
               <label class="radio inline upload-conflict-rename">
-                  <input type="radio" name="upload_modal_conflict" value="rename">Save file as:
+                  <input type="radio" name="upload_modal_conflict" value="rename">Datei speichern unter:
                   <input class="upload-rename-as" type="text" size="40">
               </label>
               </div>
           </div>
           </p>
       </div>
-			<label>Embed</label>
+			<label>Einbetten</label>
 			 <textarea id="share_embed" rows="5" onfocus="this.select();" onmouseup="return false;"></textarea>
 			 <div class="share-embed-params">
 				  <div class="vco-icon-arrow-up"></div>
 				 <div class="controls">
 					 <div class="input-prepend">
-						 <span class="add-on">Width</span>
+						 <span class="add-on">Breite</span>
 						 <input type="text" id="share_width" value="" class="input-mini">
 					 </div>
 					 <div class="input-prepend">
-						 <span class="add-on">Height</span>
+						 <span class="add-on">Höhe</span>
 						 <input type="text" id="share_height" value="" class="input-mini">
 					 </div>
 				 </div>
@@ -632,7 +632,7 @@
 
 	</div>
     <div class="modal-footer">
-        <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Close</a>
+        <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Schließen</a>
     </div>
     <!-- progress -->
     <div class="modal-progress">

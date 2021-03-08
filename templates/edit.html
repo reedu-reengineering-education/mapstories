@@ -517,7 +517,7 @@ function media_preview_update(url) {
         $preview.append(element._el.container);
       }
     } else {
-      $preview.append("<p>No Media Selected</p>");
+      $preview.append("<p>Keine Medien ausgewählt</p>");
     }
 }
 
@@ -1308,7 +1308,7 @@ $(function() {
             for(var i = 0; i < _storymap_files.length; i++) {
                 html += '<li><a href="javascript:">'+_storymap_files[i]+'</a></li>';
             }
-            $('.image-select').html(html || '<li class="default">no uploaded images found</li>');
+            $('.image-select').html(html || '<li class="default">keine hochgeladenen Bilder gefunden</li>');
 
             $('#background_image_select a').click(function(event) {
                 $('#background_url')
@@ -1427,12 +1427,12 @@ modal_init($('#line_opt_modal'))
             $(this).find('.upload-panel').trigger('reset');
         })
         .on('refresh_image_select', function(event) {
-            var html = '<li><a href="javascript:">(Default icon)</a></li>';
+            var html = '<li><a href="javascript:">(Standardicon)</a></li>';
             for(var i = 0; i < _storymap_files.length; i++) {
                 // TODO: find a nicer way of trimming these (local doesn't look nice)
                 html += '<li><a href="javascript:" data-filename="'+_storymap_files[i]+'">'+_storymap_files[i]+'</a></li>';
             }
-            $('.image-select').html(html || '<li class="default">no uploaded images found</li>');
+            $('.image-select').html(html || '<li class="default">keine hochgeladenen Bilder gefunden</li>');
 
             $('#marker_image_select a').click(function(event) {
                 if ($(this).data('filename')) {
@@ -1510,7 +1510,7 @@ modal_init($('#line_opt_modal'))
             for(var i = 0; i < _storymap_files.length; i++) {
                 html += '<li><a href="javascript:">'+_storymap_files[i]+'</a></li>';
             }
-            $('#share_image_select').html(html || '<li class="default">no uploaded images found</li>');
+            $('#share_image_select').html(html || '<li class="default">keine hochgeladenen Bilder gefunden</li>');
         })
         .on('change', '#share_width, #share_height', function(event) {
             $share_modal.trigger('modal_show');
