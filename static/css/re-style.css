@@ -9,7 +9,7 @@
     src: url("/static/fonts/BrixSlab-Bold.otf") format("opentype");
 }
 
-.button, p, h1, h2, h3, h4, h5, a, li {
+h2.product-tagline, .container, #overview, .re-button {
     font-family: BrixSlab !important;
 }
 
