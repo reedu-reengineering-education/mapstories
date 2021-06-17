@@ -145,3 +145,18 @@ def find_users(uname=None, uname__like=None, uid=None, migrated=None,
         users = cursor.fetchall()
     pages = int(math.ceil(count / limit))
     return users, pages
+
+
+def find_all_storymaps():
+    with _pg_conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cursor:
+        q = SQL("SELECT COUNT(storymaps) FROM users")
+        cursor.execute(q)
+        count = cursor.fetchone()[0]
+        # q = SQL("SELECT storymaps->>'title' FROM users;")
+        # q = SQL("SELECT storymaps @>'slides' FROM users")
+        q = SQL("SELECT uid, uname, migrated, storymaps FROM users")
+        # q = SQL("SELECT * FROM users, jsonb_array_elements(case jsonb_typeof(storymaps) when 'array' then storymaps else '[]' end)")
+        cursor.execute(q)
+        storymaps = cursor.fetchall()
+        print storymaps
+    return storymaps

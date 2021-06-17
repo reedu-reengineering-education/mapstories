@@ -141,3 +141,6 @@ Apply Custom Map Marker
 
 Create New StoryMap Slide
     Click Element  css=div#storymap_add_slide.slides-add
+
+Add StoryMap Slide
+    Click Element  css=div#storymap_add_story.slides-add
