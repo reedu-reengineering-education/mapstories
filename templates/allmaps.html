@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>StoryMap JS</title>
+<meta name="description" content="Telling stories with maps.">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/static/img/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/static/img/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="shortcut icon" href="/static/img/favicons/favicon.ico">
+<link href="//cloud.webtype.com/css/d4767ecb-457a-4677-8761-72f890add836.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdn.knightlab.com/libs/blueline/latest/css/blueline.min.css">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<script src="//cdn.knightlab.com/libs/blueline/latest/js/blueline.min.js"></script>
+<!-- === storymap -->
+<link rel="stylesheet" href="{{ CDN_URL }}css/storymap.css?v1">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/re-style.css">
+<!-- === Moment.js -->
+<script src="{{ STATIC_URL }}js/moment.min.js"></script>
+<script src="{{ STATIC_URL }}js/moment-timezone.min.js"></script>
+<script src="{{ STATIC_URL }}js/moment-timezone-data.js"></script>
+<!-- === editor -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.history.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/json2.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/editor.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/editor.css">
+
+<style>
+    #entry_login {
+      display: block;
+      margin: 2em auto;
+      width: 300px;
+    }
+    .entry-panel {
+        padding: 1.5em;
+    }
+  
+  
+</style>
+</head>
+<body>
+    <div class="entry-panel entry-list">
+        <div class="table-header">
+            <strong>Alle öffentlichen Mapstories in der Übersicht  </strong>
+            <div class="table-toggles">
+                <div class="btn-group" data-toggle="buttons-radio">
+                    <button id="entry_sort_title" type="button" class="btn btn-small active" onclick="display_list('title');">
+                        Titel <i class="icon-angle-up"></i></button>
+                    <button id="entry_sort_date" type="button" class="btn btn-small" onclick="display_list('date');">
+                        Datum <i class="icon-angle-down"></i></button>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <table class="table table-striped table-bordered">
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+    <script id="storymap_row_template" type="text/template">
+        <% if(published_on) { %>
+        <tr storymap-data="<%= id %>">
+            <td>
+                <div style="display: inline;float: right">
+                    <div class="dropdown">
+                    <a class="list-item-options dropdown-toggle" data-toggle="dropdown" href="javascript:" title="Optionen"><i class="icon-cog icon-large"></i></a>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                    </ul>
+                    </div>
+                </div>
+                <a class="title" href="<%= url %>"><%= title %></a>
+                <% if(published_on) { %>
+                    <p class="modded">Veröffentlicht am <%= format_dt(published_on) %></p>
+                <% } %>
+            </td>
+        </tr>
+
+        <% } %>
+
+    </script>
+    
+
+<!-- {% include "_storytelling_tools.html" %} -->
+<script type="text/javascript">
+    var _maps = {};
+    {% if maps %}
+        _maps = {{ maps|tojson }};
+    {% endif %}
+
+    var storymap_row_template = _.template($('#storymap_row_template').html().trim());
+
+    var _storymap_list = [];        // [object]
+
+    function storymap_url(uid, id, filename) {
+        return "{{ STORAGE_URL }}"+[uid, id, filename].join('/');
+    }
+
+    function sortby_date(a, b) {
+        adt = (a.draft_on > a.published_on) ? a.draft_on : a.published_on;
+        bdt = (b.draft_on > b.published_on) ? b.draft_on : b.published_on;
+        return (adt > bdt) ? -1 : 1;
+    }
+
+    function sortby_title(a, b) {
+        return (a.title.toUpperCase() < b.title.toUpperCase()) ? -1 : 1;
+    }
+
+    function display_list(sortby) {
+        if(sortby == 'date') {
+            _storymap_list = _storymap_list.sort(sortby_date);
+        } else {
+            _storymap_list = _storymap_list.sort(sortby_title);
+        }
+        var $table = $('.entry-list tbody').html('');
+        var html = '';
+
+        for(var i = 0; i < _storymap_list.length; i++) {
+            html += storymap_row_template(_storymap_list[i]);
+        }
+
+        $table.append(html);
+
+    }
+
+    function make_storymap_list() {
+        _storymap_list = [];
+        for(var i in _maps) {
+            for(var id in _maps[i][3]) {
+                console.log(_maps[i][3][id].id);
+                var embed_url = 'https:'+storymap_url(_maps[i][0], _maps[i][3][id].id, 'index.html');
+                _storymap_list.push({ ..._maps[i][3][id], url: embed_url});
+            }
+        }
+    }
+
+    make_storymap_list();
+
+    var $table = $('.entry-list tbody').html('');
+    var html = '';
+
+    for(var i = 0; i < _storymap_list.length; i++) {
+        html += storymap_row_template(_storymap_list[i]);
+    }
+    $table.append(html);
+
+</script>    
+
+<!-- LEAVE THIS HERE -->
+</body>
+</html>

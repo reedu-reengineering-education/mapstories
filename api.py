@@ -14,13 +14,8 @@ import json
 from functools import wraps
 import urllib
 
-try:
-    # python2
-    from urlparse import urlparse, urljoin
-except ImportError:
-    # python3
-    from urllib.parse import urlparse, urljoin
-
+# from urllib.parse import urlparse, urljoin, quote, urlencode
+from urlparse import urlparse, urljoin
 
 # Import settings module
 if __name__ == "__main__":
@@ -40,7 +35,7 @@ import slugify
 import bson
 from oauth2client.client import OAuth2WebServerFlow
 from storymap import google
-from storymap.connection import get_user, save_user, create_user, find_users
+from storymap.connection import get_user, save_user, create_user, find_users, find_all_storymaps
 
 app = Flask(__name__)
 app.config.from_envvar('FLASK_SETTINGS_FILE')
@@ -736,6 +731,25 @@ def storymap_get(user, id):
         traceback.print_exc()
         return jsonify({'error': str(e)})
 
+@app.route('/storymapdata/')
+def storymap_get_data():
+    """Get storymap"""
+    id = request.args.get('id')
+    uid = request.args.get('uid')
+    user = get_user(uid)
+
+    try:
+        key_name = storage.key_name(uid, id, 'draft.json')
+        data = storage.load_json(key_name)
+
+        return jsonify({'meta': user['storymaps'][id], 'data': data})
+    except storage.StorageException as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e), 'error_detail': e.detail})
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)})
+
 @app.route('/storymap/save/', methods=['POST'])
 @require_user
 @require_user_id()
@@ -854,6 +868,11 @@ def index():
 def impressum():
     return render_template('impressum.html')
 
+@app.route("/allmaps/")
+def allmaps():
+    maps = find_all_storymaps()
+    return render_template('allmaps.html', maps=maps)
+
 @app.route("/gigapixel/")
 def gigapixel():
     return render_template('gigapixel.html')
@@ -908,6 +927,9 @@ def legacy_redirect():
 @app.route("/select/", methods=['GET', 'POST'])
 def select():
     check_test_user()
+    maps = find_all_storymaps()
+    print(maps)
+    
     try:
         uid = session.get('uid')
         if not uid:
@@ -931,6 +953,9 @@ def edit(user, id):
     try:
         if '_id' in user: # mongo only
             del user['_id'] # for serialization
+
+        maps = find_all_storymaps()
+
         # Default Mapbox key is the production key, which is restricted to
         # only work from our domains local developers need to configure an
         # unrestricted MAPBOX_API_KEY in their environment.
@@ -938,7 +963,7 @@ def edit(user, id):
             'pk.eyJ1IjoibnVrbmlnaHRsYWIiLCJhIjoiY2pzZGxiaTRpMHd0eTQ0cGVscWliaXA2YyJ9.YTxvt_ZegqDqNxtl_gdDYA')
         return render_template('edit.html',
             user=user, meta=user['storymaps'][id],
-            mapbox_api_key=mapbox_api_key)
+            mapbox_api_key=mapbox_api_key, maps=maps)
     except Exception as e:
         traceback.print_exc()
         return render_template('edit.html', error=str(e))
@@ -1110,3 +1135,17 @@ if __name__ == '__main__':
     #    sys.exit(1)
     # Google OAuth requires localhost, not a raw IP address
     #app.run(host='0.0.0.0', port=port, debug=True, ssl_context=ssl_context)
+    
+    # try:
+    #     uid = session.get('uid')
+    #     if not uid:
+    #     user = get_user(uid)
+    #     if not user:
+    #         _session_pop('uid')
+    #         return render_template('select.html')
+    #     if '_id' in user: # mongo only
+    #         del user['_id']
+    #     return render_template('select.html', user=user)
+    # except Exception as e:
+    #     traceback.print_exc()
+    #     return render_template('select.html', error=str(e))

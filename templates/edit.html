@@ -64,9 +64,109 @@
 <iframe src="<%= embed_url %>" frameborder="0" width="<%= width %>" height="<%= height %>"></iframe>
 </script>
 
+<script id="storymap_row_template" type="text/template">
+    <% if(published_on) { %>
+            <div class="controls">
+                <label class="radio inline">
+                    <input type="radio" class="story-radio-input" name="story" data-id="<%= id %>" data-user="<%= user %>" id="<%= title %>" value="Single">
+                    <%= title %> 
+                    <p class="modded">Veröffentlicht am <%= format_dt(published_on) %></p>
+                </label>
+            </div>
+          </div>
+    <% } %>
+</script>
+
+
+
 <!-- TEMPLATES END -->
 
 <script type="text/javascript">
+
+var _maps = {};
+{% if maps %}
+_maps = {{ maps|tojson }};
+{% endif %}
+
+var mergeMap = {};
+
+var storymap_row_template = _.template($('#storymap_row_template').html().trim());
+
+var _storymap_list = [];
+
+function sortby_date(a, b) {
+    adt = (a.draft_on > a.published_on) ? a.draft_on : a.published_on;
+    bdt = (b.draft_on > b.published_on) ? b.draft_on : b.published_on;
+    return (adt > bdt) ? -1 : 1;
+}
+
+function sortby_title(a, b) {
+    return (a.title.toUpperCase() < b.title.toUpperCase()) ? -1 : 1;
+}
+
+function display_list(sortby) {
+    if(sortby == 'date') {
+        _storymap_list = _storymap_list.sort(sortby_date);
+    } else {
+        _storymap_list = _storymap_list.sort(sortby_title);
+    }
+    var $table = $('.entry-list tbody').html('');
+    var html = '';
+
+    for(var i = 0; i < _storymap_list.length; i++) {
+        html += storymap_row_template(_storymap_list[i]);
+    }
+
+    $table.append(html);
+}
+
+function make_storymap_list() {
+    _storymap_list = [];
+    for(var i in _maps) {
+        for(var id in _maps[i][3]) {
+            var embed_url = 'https:'+storymap_url(_maps[i][0], _maps[i][3][id].id, 'index.html');
+            _storymap_list.push({ ..._maps[i][3][id], url: embed_url, user: _maps[i][0]});
+        }
+    }
+}
+
+
+make_storymap_list();
+
+var $table = $('.entry-list tbody').html('');
+var html = '';
+
+for(var i = 0; i < _storymap_list.length; i++) {
+    html += storymap_row_template(_storymap_list[i]);
+}
+$table.append(html);
+
+var inputs = $('.story-radio-input').click(function(event){
+    mergeMap = {user: $(this).attr('data-user'), id: $(this).attr('data-id')}
+    ajax_get("{{ url_for('storymap_get_data') }}",
+        {id: mergeMap.id, uid: mergeMap.user},
+        function(error) {
+        },
+        function(data) {
+            for(var i = 1; i < data.data.storymap.slides.length; i++){
+                var slideData = data.data.storymap.slides[i];
+                _slides.push(slideData);
+                storymap_dirty(1);
+
+                var slide = slide_append_element(slideData);
+
+                // Adjust slide container height
+                var height = $('#slides').height() + slide.outerHeight(true);
+                $('#slides').css('height', height+"px");
+
+                // Scroll new slide into view
+                $('.slides-container').scrollTop(Math.max(0, height - $('#slides').parent().height()));
+
+            }
+        }
+    );
+
+})
 
 var keys = { backspace: 8, tab: 9, enter: 13, shift: 16, ctrl: 17, alt: 18, pausebreak: 19, capslock: 20, esc: 27, space: 32, pageup: 33, pagedown: 34, end: 35, home: 36, leftarrow: 37, uparrow: 38, rightarrow: 39, downarrow: 40, insert: 45, delete: 46, 0: 48, 1: 49, 2: 50, 3: 51, 4: 52, 5: 53, 6: 54, 7: 55, 8: 56, 9: 57, a: 65, b: 66, c: 67, d: 68, e: 69, f: 70, g: 71, h: 72, i: 73, j: 74, k: 75, l: 76, m: 77, n: 78, o: 79, p: 80, q: 81, r: 82, s: 83, t: 84, u: 85, v: 86, w: 87, x: 88, y: 89, z: 90, leftwindowkey: 91, rightwindowkey: 92, selectkey: 93, numpad0: 96, numpad1: 97, numpad2: 98, numpad3: 99, numpad4: 100, numpad5: 101, numpad6: 102, numpad7: 103, numpad8: 104, numpad9: 105, multiply: 106, add: 107, subtract: 109, decimalpoint: 110, divide: 111, f1: 112, f2: 113, f3: 114, f4: 115, f5: 116, f6: 117, f7: 118, f8: 119, f9: 120, f10: 121, f11: 122, f12: 123, numlock: 144, scrolllock: 145, semicolon: 186, equalsign: 187, comma: 188, dash: 189, period: 190, forwardslash: 191, graveaccent: 192, openbracket: 219, backslash: 220, closebracket: 221, singlequote: 222 };    
     
@@ -852,6 +952,21 @@ $(function() {
         }
     });
 
+    $('#storymap_add_story').click(function(event) {
+
+        $('#add_story_modal').modal('toggle');
+        // if(preview_visible()) {
+        //     $('#edit').one('edit-tab-shown', function(event) {
+        //         slide_add();
+        //     });
+        //     $('a[data-toggle="tab"][href="#edit"]').tab('show');
+        // } else {
+        //     slide_add();
+        // }
+    });
+
+    
+
 //------------------------------------------------------------
 // StoryMap Options
 //------------------------------------------------------------
@@ -1361,14 +1476,12 @@ modal_init($('#line_opt_modal'))
       
         .on('modal_show', function(event, error_msg) {
             var line = _slides[_current_slide_index].line || {};
-            console.log(line)
             var color = line.color || '';
             var width = line.width || '';
             var opacity = (line.opacity || 100) / 100;
             // var url = background.url || '';
             $('#line_color').minicolors('value', color);
             $('#line_color').minicolors('opacity', opacity);
-            console.log(width)
             $('#line_width option:eq('+ width +')').attr('selected', 'selected')
 
             if(color) {
@@ -1458,6 +1571,21 @@ modal_init($('#line_opt_modal'))
 
             $(this).find('.upload-panel').trigger('reset');
             $(this).trigger('reset', error_msg);
+        })
+        .on('show', function() {
+            $(this).trigger('modal_show');
+        });
+
+    modal_init($('#add_story_modal'))
+        .on('upload', function(event, url) {
+            // $(this).trigger('refresh_image_select');
+            // $('#background_url').val(url).change();
+            // $(this).find('.upload-panel').trigger('reset');
+        })
+      
+        .on('modal_show', function(event, error_msg) {
+            console.log("show")
+
         })
         .on('show', function() {
             $(this).trigger('modal_show');

@@ -684,18 +684,18 @@ a.list-item-options:hover {
 
 /*	SLIDE ADD
 ----------------------------------------------------- */
-#storymap_add_slide {
+#storymap_add_slide, #storymap_add_story {
 	margin-bottom:25px;
 	cursor: pointer;
 }
-#storymap_add_slide .slide-icon:before {
+#storymap_add_slide .slide-icon:before, #storymap_add_story .slide-icon:before {
 	display:none;
 }
-#storymap_add_slide .slide-title {
+#storymap_add_slide .slide-title, #storymap_add_story .slide-title{
 	text-align:center;
 	color:#999;
 }
-#storymap_add_slide .slide-icon:after {
+#storymap_add_slide .slide-icon:after, #storymap_add_story  .slide-icon:after {
 	content: "+";
 	line-height: 0;
 	font-size:58px;
@@ -703,7 +703,7 @@ a.list-item-options:hover {
 
 }
 
-#storymap_add_slide .slide-icon {
+#storymap_add_slide .slide-icon, #storymap_add_story .slide-icon {
 	position:relative;
     display: block;
     width: 80px;
@@ -719,10 +719,10 @@ a.list-item-options:hover {
 	margin-top:20px;
 	padding-top:20px;
 }
-#storymap_add_slide:hover .slide-title {
+#storymap_add_slide:hover .slide-title, #storymap_add_story:hover .slide-title {
 	color:#000;
 }
-#storymap_add_slide:hover .slide-icon:after {
+#storymap_add_slide:hover .slide-icon:after, #storymap_add_story:hover .slide-icon:after {
 	color:#333;
 }
 /*	TABS

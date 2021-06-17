@@ -213,6 +213,7 @@ Bearbeitet am <%= format_dt(draft_on) %>
 <script type="text/javascript">
 
 var _user = {};
+console.log(this);
 {% if user %}
     _user = {{ user|tojson }};
 {% endif %}
