@@ -158,5 +158,4 @@ def find_all_storymaps():
         # q = SQL("SELECT * FROM users, jsonb_array_elements(case jsonb_typeof(storymaps) when 'array' then storymaps else '[]' end)")
         cursor.execute(q)
         storymaps = cursor.fetchall()
-        print storymaps
     return storymaps

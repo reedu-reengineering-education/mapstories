@@ -14,8 +14,8 @@ import json
 from functools import wraps
 import urllib
 
-# from urllib.parse import urlparse, urljoin, quote, urlencode
-from urlparse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin, quote, urlencode
+# from urlparse import urlparse, urljoin
 
 # Import settings module
 if __name__ == "__main__":
