@@ -168,16 +168,15 @@ VCO.MenuBar = VCO.Class.extend({
 		if (VCO.Browser.mobile) {
 			
 			this._el.button_backtostart.innerHTML		= "<span class='vco-icon-goback'></span>";
-			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback" class="btn"><i class="icon-help"></i> Feedback</a>';
+			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback"><i class="icon-help"></i> Feedback</a>';
 			this._el.button_collapse_toggle.innerHTML	= "<span class='vco-icon-arrow-up'></span>";
 			this._el.container.setAttribute("ontouchstart"," ");
 		} else {
 			
 			this._el.button_backtostart.innerHTML		= VCO.Language.buttons.backtostart + " <span class='vco-icon-goback'></span>";
-			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback" class="btn"><i class="icon-help"></i> Feedback</a>';
+			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback"><i class="icon-help"></i> Feedback</a>';
 			this._el.button_collapse_toggle.innerHTML	= VCO.Language.buttons.collapse_toggle + "<span class='vco-icon-arrow-up'></span>";
 		}
-		button_backtostart
 		if (this.options.layout == "landscape") {
 			this._el.button_collapse_toggle.style.display = "none";
 		}

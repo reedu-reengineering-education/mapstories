@@ -126,7 +126,6 @@ VCO.MediaType = function(m) {
 				cls: 		VCO.Media
 			}
 		];
-	
 	for (var i = 0; i < media_types.length; i++) {
 		if (m instanceof Array) {
 			return media = {
