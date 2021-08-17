@@ -17,6 +17,7 @@ VCO.MenuBar = VCO.Class.extend({
 			container: {},
 			button_overview: {},
 			button_backtostart: {},
+			button_feedback: {},
 			button_collapse_toggle: {},
 			arrow: {},
 			line: {},
@@ -152,6 +153,9 @@ VCO.MenuBar = VCO.Class.extend({
 		this._el.button_backtostart 					= VCO.Dom.create('span', 'vco-menubar-button', this._el.container);
 		VCO.DomEvent.addListener(this._el.button_backtostart, 'click', this._onButtonBackToStart, this);
 		
+		this._el.button_feedback 					= VCO.Dom.create('span', 'vco-menubar-button', this._el.container);
+		// VCO.DomEvent.addListener(this._el.button_backtostart, 'click', this._onButtonBackToStart, this);
+		
 		this._el.button_collapse_toggle 				= VCO.Dom.create('span', 'vco-menubar-button', this._el.container);
 		VCO.DomEvent.addListener(this._el.button_collapse_toggle, 'click', this._onButtonCollapseMap, this);
 		
@@ -164,14 +168,15 @@ VCO.MenuBar = VCO.Class.extend({
 		if (VCO.Browser.mobile) {
 			
 			this._el.button_backtostart.innerHTML		= "<span class='vco-icon-goback'></span>";
+			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback"><i class="icon-help"></i> Feedback</a>';
 			this._el.button_collapse_toggle.innerHTML	= "<span class='vco-icon-arrow-up'></span>";
 			this._el.container.setAttribute("ontouchstart"," ");
 		} else {
 			
 			this._el.button_backtostart.innerHTML		= VCO.Language.buttons.backtostart + " <span class='vco-icon-goback'></span>";
+			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback"><i class="icon-help"></i> Feedback</a>';
 			this._el.button_collapse_toggle.innerHTML	= VCO.Language.buttons.collapse_toggle + "<span class='vco-icon-arrow-up'></span>";
 		}
-		
 		if (this.options.layout == "landscape") {
 			this._el.button_collapse_toggle.style.display = "none";
 		}

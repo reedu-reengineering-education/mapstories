@@ -84,6 +84,12 @@ VCO.MediaType = function(m) {
 				cls: 		VCO.Media.Image
 			},
 			{
+				type: 		"mp3",
+				name: 		"MP3",
+				match_str: 	/mp3|MP3/i,
+				cls: 		VCO.Media.Mp3
+			},
+			{
 				type: 		"googledocs",
 				name: 		"Google Doc",
 				match_str: 	/\b.(doc|docx|xls|xlsx|ppt|pptx|pdf|pages|ai|psd|tiff|dxf|svg|eps|ps|ttf|xps|zip|tif)\b/,
@@ -126,7 +132,6 @@ VCO.MediaType = function(m) {
 				cls: 		VCO.Media
 			}
 		];
-	
 	for (var i = 0; i < media_types.length; i++) {
 		if (m instanceof Array) {
 			return media = {

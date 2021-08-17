@@ -892,7 +892,7 @@ label, .data-media-upload {
 
 .vco-media-wikipedia {
 	height: 300px;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .data-media-icons {
