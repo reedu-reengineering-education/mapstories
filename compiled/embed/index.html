@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>StoryMapJS Embed</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="StoryMapJS Embed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <link rel="stylesheet" href="../css/storymap.css">
+    <script type="text/javascript" src="../js/storymap-min.js"></script>
+    <script type="text/javascript" src="../js/json2.min.js"></script>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      #storymap-embed {
+        /*border: 1px solid #999;*/
+      }
+    </style>
+    <!-- HTML5 shim, for IE6-8 support of HTML elements-->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script
+    ><![endif]-->
+  </head>
+  <body>
+    <div id="storymap-embed"></div>
+    <!-- Matomo -->
+    <script
+      type="text/plain"
+      data-type="application/javascript"
+      data-name="piwik"
+    >
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(["setCookieDomain", "*.mapstories.de"]);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//analytics.mapstories.de/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript
+      ><p>
+        <img
+          src="//analytics.mapstories.de/matomo.php?idsite=1&amp;rec=1"
+          style="border: 0"
+          alt=""
+        /></p
+    ></noscript>
+    <!-- End Matomo Code -->
+
+    <script>
+      window.klaroConfig = {
+        lang: (navigator.language || navigator.userLanguage).substring(0, 2),
+        elementID: "klaro",
+        storageMethod: "cookie",
+        storageName: "klaro",
+        translations: {
+          zz: {
+            privacyPolicyUrl: "/privacy",
+          },
+          de: {
+            privacyPolicyUrl: "/privacy",
+            purposes: {
+              analytics: {
+                title: "Besucher-Statistiken",
+              },
+            },
+          },
+        },
+        services: [
+          {
+            name: "piwik",
+            default: true,
+            translations: {
+              zz: {
+                title: "Matomo/Piwik",
+              },
+              en: {
+                description:
+                  "Matomo is a simple, self-hosted analytics service.",
+              },
+              de: {
+                description:
+                  "Matomo ist ein einfacher, selbstgehosteter Analytics-Service.",
+              },
+            },
+            purposes: ["analytics"],
+            cookies: [
+              [/^_pk_.*$/, "/", "mapstories.de"],
+              [/^_pk_.*$/, "/", "localhost"],
+              "piwik_ignore",
+            ],
+            required: false,
+            optOut: false,
+            onlyOnce: true,
+          },
+          {
+            name: "Mapstories",
+            default: true,
+            purposes: ["functional"],
+            cookies: ["mapstories"],
+            required: true,
+            optOut: false,
+            onlyOnce: true,
+          },
+        ],
+      };
+    </script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://cdn.kiprotect.com/klaro/v0.7.18/klaro.js"
+    ></script>
+    <style>
+      .cookie-notice,
+      .cookie-modal {
+        z-index: 10000 !important;
+      }
+
+      .cookie-notice *,
+      .cookie-notice * button:hover,
+      .cookie-modal *,
+      .cookie-modal * button:hover {
+        box-shadow: none;
+        text-shadow: none;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function parseQuerystring() {
+        var nvpair = {};
+        var qs = window.location.search.replace("?", "");
+        var pairs = qs.split("&");
+
+        for (var i = 0; i < pairs.length; i++) {
+          var p = pairs[i].split("=");
+          nvpair[p[0]] = p[1];
+        }
+        return nvpair;
+      }
+
+      function getScriptPath(scriptname) {
+        var scriptTags = document.getElementsByTagName("script");
+
+        for (var i = 0; i < scriptTags.length; i++) {
+          if (scriptTags[i].src.match(scriptname)) {
+            script_path = scriptTags[i].src;
+            return script_path.split("?")[0].split("/").slice(0, -1).join("/");
+          }
+        }
+        return "";
+      }
+
+      function url_join(url, concat) {
+        // see http://stackoverflow.com/questions/2676178/joining-relative-urls
+        function build(parts, container) {
+          for (var i = 0, l = parts.length; i < l; i++) {
+            if (parts[i] == "..") {
+              container.pop();
+            } else if (parts[i] == ".") {
+              continue;
+            } else {
+              container.push(parts[i]);
+            }
+          }
+        }
+        var url_parts = [];
+        build(url.split("/"), url_parts);
+        build(concat.split("/"), url_parts);
+        return url_parts.join("/");
+      }
+
+      var storymap = null;
+
+      var params = parseQuerystring();
+      var storymap_url = decodeURIComponent(params["url"]);
+
+      if (
+        !!navigator.userAgent.match(/AppleWebKit\/.* Mobile\//) ||
+        !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/) ||
+        !!navigator.userAgent.toLowerCase().match(/msie [789]/)
+      ) {
+        if (storymap_url.match(/^https?:\/\/www\.googledrive\.com\/host\//)) {
+          storymap_url =
+            location.protocol +
+            "//proxy.knightlab.com/" +
+            storymap_url.split("://")[1];
+          trace("proxy, " + storymap_url);
+        }
+      }
+
+      var options = {
+        script_path: getScriptPath(/storymap(-min)?\.js/),
+        start_at_slide: 0,
+      };
+
+      if (params.hasOwnProperty("start_at_slide")) {
+        options.start_at_slide = parseInt(params.start_at_slide);
+      }
+
+      function storymap_onload(d) {
+        trace("embed: storymap data loaded");
+        if (d && d.storymap) {
+          var font = "stock:default";
+          if (d.font_css) {
+            font = d.font_css;
+          }
+          if (font.indexOf("stock:") == 0) {
+            var font_name = font.split(":")[1];
+            var base_url = url_join(options.script_path, "../css/fonts");
+            font = url_join(base_url, "font." + font_name + ".css");
+          } else if (!font.match("^(http|https|//)")) {
+            font = url_join(options.script_path, font);
+          }
+          VCO.Load.css(font, function () {
+            trace("font loaded: " + font);
+          });
+          storymap = new VCO.StoryMap("storymap-embed", d, options, {
+            title: on_storymap_title,
+          });
+        }
+        var mapType = storymap.options.map_type;
+        if (mapType && mapType.match("^zoomify.*")) {
+          ga("send", "event", "StoryMapJS", "zoomify", document.referrer);
+        }
+      }
+
+      function on_storymap_title(e) {
+        document.title = "StoryMapJS: " + e.title;
+      }
+
+      function storymap_getjson() {
+        if ("withCredentials" in new XMLHttpRequest()) {
+          // Supports cross-domain requests
+          trace("embed: loading data via XMLHttpRequest");
+          VCO.getJSON(storymap_url, storymap_onload);
+        } else if (typeof XDomainRequest !== "undefined") {
+          // Use IE-specific "CORS" code with XDR
+          trace("embed: loading data via XDomainRequest");
+          var xdr = new XDomainRequest();
+          xdr.onload = function () {
+            storymap_onload(JSON.parse(xdr.responseText));
+          };
+          xdr.onerror = function () {
+            trace("embed: error loading data via XDomainRequest");
+          };
+          xdr.onprogress = function () {};
+          xdr.open("get", storymap_url);
+          xdr.send();
+        }
+      }
+
+      window.onload = function () {
+        if (storymap_url.match("\\.js$")) {
+          trace("embed: loading data via script injection");
+          var loaded = false;
+          var script = document.createElement("script");
+          script.type = "text/javascript";
+          script.src = storymap_url;
+          script.onload = script.onreadystatechange = function () {
+            if (
+              !loaded &&
+              (!(d = this.readyState) || d == "loaded" || d == "complete")
+            ) {
+              loaded = true;
+              storymap_onload(storymap_json);
+            }
+          };
+
+          // document.head not standard before HTML5
+          var insertionPoint =
+            document.head ||
+            document.getElementsByTagName("head").item(0) ||
+            document.documentElement.childNodes[0];
+          insertionPoint.appendChild(script);
+        } else {
+          storymap_getjson();
+        }
+      };
+
+      window.onresize = function (event) {
+        if (storymap) {
+          storymap.updateDisplay();
+        }
+      };
+    </script>
+  </body>
+</html>
