@@ -1,4 +1,4 @@
-/* storymapjs - v2021-03-01-14-14-56 - 2021-03-01
+/* storymapjs - v2021-08-17-11-14-41 - 2021-08-17
  * Copyright (c) 2021 Northwestern University Knight Lab
  */
 
@@ -4730,6 +4730,7 @@ VCO.MenuBar = VCO.Class.extend({
 			container: {},
 			button_overview: {},
 			button_backtostart: {},
+			button_feedback: {},
 			button_collapse_toggle: {},
 			arrow: {},
 			line: {},
@@ -4866,8 +4867,8 @@ VCO.MenuBar = VCO.Class.extend({
 		VCO.DomEvent.addListener(this._el.button_backtostart, 'click', this._onButtonBackToStart, this);
 		
 		this._el.button_feedback 					= VCO.Dom.create('span', 'vco-menubar-button', this._el.container);
-
-
+		// VCO.DomEvent.addListener(this._el.button_backtostart, 'click', this._onButtonBackToStart, this);
+		
 		this._el.button_collapse_toggle 				= VCO.Dom.create('span', 'vco-menubar-button', this._el.container);
 		VCO.DomEvent.addListener(this._el.button_collapse_toggle, 'click', this._onButtonCollapseMap, this);
 		
@@ -4880,16 +4881,15 @@ VCO.MenuBar = VCO.Class.extend({
 		if (VCO.Browser.mobile) {
 			
 			this._el.button_backtostart.innerHTML		= "<span class='vco-icon-goback'></span>";
-			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback" class="btn"><i class="icon-help"></i> Feedback</a>';
+			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback"><i class="icon-help"></i> Feedback</a>';
 			this._el.button_collapse_toggle.innerHTML	= "<span class='vco-icon-arrow-up'></span>";
 			this._el.container.setAttribute("ontouchstart"," ");
 		} else {
 			
 			this._el.button_backtostart.innerHTML		= VCO.Language.buttons.backtostart + " <span class='vco-icon-goback'></span>";
-			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback" class="btn"><i class="icon-help"></i> Feedback</a>';
+			this._el.button_feedback.innerHTML			= '<a href="https://padlet.com/VamosMuenster/na6zu0k77l37gvdz" target="_blank" id="feedback"><i class="icon-help"></i> Feedback</a>';
 			this._el.button_collapse_toggle.innerHTML	= VCO.Language.buttons.collapse_toggle + "<span class='vco-icon-arrow-up'></span>";
 		}
-		
 		if (this.options.layout == "landscape") {
 			this._el.button_collapse_toggle.style.display = "none";
 		}
@@ -5116,6 +5116,12 @@ VCO.MediaType = function(m) {
 				cls: 		VCO.Media.Image
 			},
 			{
+				type: 		"mp3",
+				name: 		"MP3",
+				match_str: 	/mp3|MP3/i,
+				cls: 		VCO.Media.Mp3
+			},
+			{
 				type: 		"googledocs",
 				name: 		"Google Doc",
 				match_str: 	/\b.(doc|docx|xls|xlsx|ppt|pptx|pdf|pages|ai|psd|tiff|dxf|svg|eps|ps|ttf|xps|zip|tif)\b/,
@@ -5158,7 +5164,6 @@ VCO.MediaType = function(m) {
 				cls: 		VCO.Media
 			}
 		];
-	
 	for (var i = 0; i < media_types.length; i++) {
 		if (m instanceof Array) {
 			return media = {
@@ -5669,16 +5674,19 @@ VCO.Media.Instagram = VCO.Media.extend({
 		this._el.content_link.target 		= "_blank";
 		
 		// Photo
-		this._el.content_item				= VCO.Dom.create("img", "vco-media-item vco-media-image vco-media-instagram vco-media-shadow", this._el.content_link);
+		this._el.content_item				= VCO.Dom.create("iframe", "vco-media-item vco-media-iframe vco-media-instagram vco-media-shadow", this._el.content_link);
 		
 		// Media Loaded Event
 		this._el.content_item.addEventListener('load', function(e) {
 			self.onMediaLoaded();
 		});
 		
+		console.log("LAODING MEDIA" + this.media_id);
 		// Set source
-		this._el.content_item.src			= "https://instagram.com/p/" + this.media_id + "/media/?size=" + this.sizes(this._el.content.offsetWidth);
-		
+		// this._el.content_item.src			= "https://instagram.com/p/" + this.media_id + "/media/?size=" + this.sizes(this._el.content.offsetWidth);
+		this._el.content_item.src			= "//instagram.com/p/" + this.media_id + "/embed/" 
+		this._el.content_item.height = '500';
+		this._el.content_item.frameBorder = "0";
 		this.onLoaded();
 		
 	},
@@ -5909,6 +5917,62 @@ VCO.Media.Image = VCO.Media.extend({
 			self.onMediaLoaded();
 		});
 		
+		this._el.content_item.src			= this.data.url;
+		
+		this.onLoaded();
+	},
+	
+	_updateMediaDisplay: function(layout) {
+		
+		
+		if(VCO.Browser.firefox) { 
+			//this._el.content_item.style.maxWidth = (this.options.width/2) - 40 + "px";
+			this._el.content_item.style.width = "auto";
+		}
+	}
+	
+});
+
+/* **********************************************
+     Begin VCO.Media.Mp3.js
+********************************************** */
+
+/*	VCO.Media.Mp3
+	Produces mp3 assets.
+	Takes a data object and populates a dom object
+================================================== */
+
+VCO.Media.Mp3 = VCO.Media.extend({
+	
+	includes: [VCO.Events],
+	
+	/*	Load the media
+	================================================== */
+	_loadMedia: function() {
+        console.log("LOADING MP3")
+		var self = this;
+		// Loading Message
+		this.message.updateMessage(VCO.Language.messages.loading + " " + this.options.media_name);
+		
+		console.log(this._el);
+		// Link
+		if (this.data.link) {
+			this._el.content_link 				= VCO.Dom.create("a", "", this._el.content);
+			this._el.content_link.href 			= this.data.link;
+			this._el.content_link.target 		= "_blank";
+		}
+		// } else {
+        // }
+		let audio = VCO.Dom.create('audio', 'vco-media-mp3 controls', this._el.content)
+        this._el.content_item				= VCO.Dom.create("source", "test", audio);
+		
+        // this.el.content_item.
+		// Media Loaded Event
+		this._el.content_item.addEventListener('load', function(e) {
+			self.onMediaLoaded();
+		});
+		
+		audio.controls = true;
 		this._el.content_item.src			= this.data.url;
 		
 		this.onLoaded();
@@ -17730,6 +17794,7 @@ L.TileLayer.include({
 	// @codekit-prepend "media/types/VCO.Media.GooglePlus.js";
 	// @codekit-prepend "media/types/VCO.Media.IFrame.js";
 	// @codekit-prepend "media/types/VCO.Media.Image.js";
+	// @codekit-prepend "media/types/VCO.Media.Mp3.js";
 	// @codekit-prepend "media/types/VCO.Media.SoundCloud.js";
 	// @codekit-prepend "media/types/VCO.Media.Storify.js";
 	// @codekit-prepend "media/types/VCO.Media.Text.js";
