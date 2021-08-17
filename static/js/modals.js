@@ -146,7 +146,7 @@ $('.btn.upload').click(function(event) {
                 $modal.trigger('error_show', 'You must enter a file name.');
                 return;
             }
-            if (!hasExtension(name, [".jpg", ".jpeg", ".bmp", ".gif", ".png"])) {
+            if (!hasExtension(name, [".jpg", ".jpeg", ".bmp", ".gif", ".png", ".mp3", ".MP3"])) {
                 //$modal.trigger('error_show', 'You must enter a file extension like jpg, gif or png.');
                 name = $upload_rename_as.val().trim();
                 name = appendToFilename(name, ext);
