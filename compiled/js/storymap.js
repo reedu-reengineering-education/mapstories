@@ -1,4 +1,4 @@
-/* storymapjs - v2021-08-17-11-14-41 - 2021-08-17
+/* storymapjs - v2021-08-18-12-37-38 - 2021-08-18
  * Copyright (c) 2021 Northwestern University Knight Lab
  */
 
@@ -7719,20 +7719,28 @@ VCO.StorySlider = VCO.Class.extend({
 		for(var i=0; i+1< coords.length; i++){
 			distance+= this.distance(coords[i][0],coords[i][1],coords[i+1][0],coords[i+1][1])
 		}
-		$({ Counter: this.currentDistance }).animate({
-			Counter: distance
-		}, {
-			duration: 1000,
-			easing: 'swing',
-			step: function() {
-				$('.distance').text(this.Counter.toFixed(0)+' km');
+		console.log($({ Counter: this.currentDistance }));
+		if($({ Counter: this.currentDistance })){
+			try {
+				$({ Counter: this.currentDistance }).animate({
+					Counter: distance
+				}, {
+					duration: 1000,
+					easing: 'swing',
+					step: function() {
+						$('.distance').text(this.Counter.toFixed(0)+' km');
+					}
+				});
+				//DIRTY HACK
+				setTimeout(function(){
+					$('.distance').text(distance.toFixed(0) + ' km');
+				}, 1006)
+				this.currentDistance = distance;
+
+			} catch(e){
+				console.log("Distance error", e);
 			}
-		});
-		//DIRTY HACK
-		setTimeout(function(){
-			$('.distance').text(distance.toFixed(0) + ' km');
-		}, 1006)
-		this.currentDistance = distance;
+		}
 	},
 	distance :function(lat1, lon1, lat2, lon2) {
 		var p = 0.017453292519943295;    // Math.PI / 180
