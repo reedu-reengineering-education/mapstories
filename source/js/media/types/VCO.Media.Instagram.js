@@ -37,7 +37,8 @@ VCO.Media.Instagram = VCO.Media.extend({
 		this._el.content_item.src			= "//instagram.com/p/" + this.media_id + "/embed/" 
 		this._el.content_item.height = '500';
 		this._el.content_item.frameBorder = "0";
-		this.onLoaded();
+		this._el.content.style="position: relative;	padding-bottom: 120%; height: 0;overflow: hidden;";
+		this.onLoaded();       
 		
 	},
 	

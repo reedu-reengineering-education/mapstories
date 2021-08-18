@@ -1,4 +1,4 @@
-/* storymapjs - v2021-08-18-12-37-38 - 2021-08-18
+/* storymapjs - v2021-08-18-13-53-06 - 2021-08-18
  * Copyright (c) 2021 Northwestern University Knight Lab
  */
 
@@ -5687,7 +5687,27 @@ VCO.Media.Instagram = VCO.Media.extend({
 		this._el.content_item.src			= "//instagram.com/p/" + this.media_id + "/embed/" 
 		this._el.content_item.height = '500';
 		this._el.content_item.frameBorder = "0";
-		this.onLoaded();
+		this._el.content.style="position: relative;	padding-bottom: 120%; height: 0;overflow: hidden;";
+		this.onLoaded();       
+		
+		// // Selecting the iframe element
+        // var frame = this._el.content_item;
+          
+        // // Adjusting the iframe height onload event
+        // this._el.content_item.onload = function()
+        // // function execute while load the iframe
+        // {
+        //   // set the height of the iframe as 
+        //   // the height of the iframe content
+		//   debugger;
+        //   frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
+           
+  
+        //  // set the width of the iframe as the 
+        //  // width of the iframe content
+        //  frame.style.width  = frame.contentWindow.document.body.scrollWidth+'px';
+              
+        // }
 		
 	},
 	
