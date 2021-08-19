@@ -1,4 +1,4 @@
-/* storymapjs - v2021-08-17-11-14-41 - 2021-08-17
+/* storymapjs - v2021-08-18-13-53-06 - 2021-08-18
  * Copyright (c) 2021 Northwestern University Knight Lab
  */
 
@@ -5687,7 +5687,27 @@ VCO.Media.Instagram = VCO.Media.extend({
 		this._el.content_item.src			= "//instagram.com/p/" + this.media_id + "/embed/" 
 		this._el.content_item.height = '500';
 		this._el.content_item.frameBorder = "0";
-		this.onLoaded();
+		this._el.content.style="position: relative;	padding-bottom: 120%; height: 0;overflow: hidden;";
+		this.onLoaded();       
+		
+		// // Selecting the iframe element
+        // var frame = this._el.content_item;
+          
+        // // Adjusting the iframe height onload event
+        // this._el.content_item.onload = function()
+        // // function execute while load the iframe
+        // {
+        //   // set the height of the iframe as 
+        //   // the height of the iframe content
+		//   debugger;
+        //   frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
+           
+  
+        //  // set the width of the iframe as the 
+        //  // width of the iframe content
+        //  frame.style.width  = frame.contentWindow.document.body.scrollWidth+'px';
+              
+        // }
 		
 	},
 	
@@ -7719,20 +7739,28 @@ VCO.StorySlider = VCO.Class.extend({
 		for(var i=0; i+1< coords.length; i++){
 			distance+= this.distance(coords[i][0],coords[i][1],coords[i+1][0],coords[i+1][1])
 		}
-		$({ Counter: this.currentDistance }).animate({
-			Counter: distance
-		}, {
-			duration: 1000,
-			easing: 'swing',
-			step: function() {
-				$('.distance').text(this.Counter.toFixed(0)+' km');
+		console.log($({ Counter: this.currentDistance }));
+		if($({ Counter: this.currentDistance })){
+			try {
+				$({ Counter: this.currentDistance }).animate({
+					Counter: distance
+				}, {
+					duration: 1000,
+					easing: 'swing',
+					step: function() {
+						$('.distance').text(this.Counter.toFixed(0)+' km');
+					}
+				});
+				//DIRTY HACK
+				setTimeout(function(){
+					$('.distance').text(distance.toFixed(0) + ' km');
+				}, 1006)
+				this.currentDistance = distance;
+
+			} catch(e){
+				console.log("Distance error", e);
 			}
-		});
-		//DIRTY HACK
-		setTimeout(function(){
-			$('.distance').text(distance.toFixed(0) + ' km');
-		}, 1006)
-		this.currentDistance = distance;
+		}
 	},
 	distance :function(lat1, lon1, lat2, lon2) {
 		var p = 0.017453292519943295;    // Math.PI / 180
