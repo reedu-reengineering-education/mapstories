@@ -62,6 +62,7 @@
 	// @codekit-prepend "media/types/VCO.Media.IFrame.js";
 	// @codekit-prepend "media/types/VCO.Media.Image.js";
 	// @codekit-prepend "media/types/VCO.Media.Mp3.js";
+	// @codekit-prepend "media/types/VCO.Media.Padlet.js";
 	// @codekit-prepend "media/types/VCO.Media.SoundCloud.js";
 	// @codekit-prepend "media/types/VCO.Media.Storify.js";
 	// @codekit-prepend "media/types/VCO.Media.Text.js";

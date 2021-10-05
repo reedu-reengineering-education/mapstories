@@ -114,6 +114,12 @@ VCO.MediaType = function(m) {
 				cls: 		VCO.Media.Storify
 			},
 			{
+				type: 		"padlet",
+				name: 		"Padlet",
+				match_str: 	"padlet.com",
+				cls: 		VCO.Media.Padlet
+			},
+			{
 				type: 		"blockquote",
 				name: 		"Quote",
 				match_str: 	"blockquote",
