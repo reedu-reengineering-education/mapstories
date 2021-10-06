@@ -266,6 +266,15 @@ VCO.Slide = VCO.Class.extend({
 			this._el.container.className += ' vco-slide-text-only';
 			this._text.addTo(this._el.content);
 		}
+
+		if(this.data.media.mp3){
+			var audio = document.createElement("audio");
+			audio.controls = true;
+			var source = document.createElement("source");
+			source.src = this.data.media.mp3;
+			audio.append(source);
+			this._el.content.append(audio)
+		}
 		
 		// Fire event that the slide is loaded
 		this.onLoaded();
