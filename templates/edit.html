@@ -431,6 +431,7 @@ function slide_select(event) {
         }
 
         $('#url').val(data.media.url);
+        $('#mp3').val(data.media.mp3);
         $('#credit').val(data.media.credit);
         $('#caption').val(data.media.caption);
 
@@ -888,7 +889,9 @@ function storymap_init(init_callback) {
                     storymap_abort(format_error('Error listing images', error), error_detail);
                 },
                 function(data) {
-                    _storymap_files = data.image_list.sort();
+                    _storymap_files = data.image_list.sort().filter(val => {
+                        return val.match(/\.(jpe?g|png|gif)$/)
+                    });
                 }
             );
 
@@ -1213,7 +1216,7 @@ $(function() {
 //------------------------------------------------------------
 
     // slide-level media options
-    $('#url, #credit, #caption').change(function(event) {
+    $('#url, #credit, #caption, #mp3').change(function(event) {
         var id = $(this).attr('id');
         var val = $(this).val().trim();
 
@@ -1231,6 +1234,25 @@ $(function() {
             media_preview_update(val);
         }
     });
+
+    // $('#mp3').change(function(event) {
+    //     var id = $(this).attr('id');
+    //     var val = $(this).val().trim();
+
+    //     if(id == 'url' && val.match('^https://www.dropbox.com/')) {
+    //         val = val.replace(/^https:\/\/www.dropbox.com\//i, 'https://dl.dropboxusercontent.com/');
+    //         $(this).val(val);
+    //     }
+
+    //     _slides[_current_slide_index].media[id] = val;
+    //     storymap_dirty(1);
+
+    //     slide_set_class(_current_slide_index);
+
+    //     if (id == 'url') {
+    //         media_preview_update(val);
+    //     }
+    // });
 
     // slide-level text options
     $('#headline').change(function() {
@@ -1327,6 +1349,19 @@ $(function() {
     modal_init($('#upload_modal'))
         .on('upload', function(event, url) {
             $('#url').val(url).change();
+            $(this).modal('hide');
+        })
+        .on('modal_show', function(event, error_msg) {
+            $(this).find('.upload-panel').trigger('reset');
+            $(this).trigger('reset', error_msg);
+        })
+        .on('show', function() {
+            $(this).trigger('modal_show');
+        });
+
+    modal_init($('#upload_modal_mp3'))
+        .on('upload', function(event, url) {
+            $('#mp3').val(url).change();
             $(this).modal('hide');
         })
         .on('modal_show', function(event, error_msg) {

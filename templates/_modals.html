@@ -490,6 +490,51 @@
     </div>
 </div>
 
+<div id="upload_modal_mp3" class="modal hide fade" data-backdrop="static">
+    <div class="modal-body">
+        <!-- error -->
+        <div class="modal-error hide">
+            <span class="modal-msg error"></span>
+        </div>
+        <!-- main -->
+        <p>Select an mp3 file to upload to your StoryMap folder.</p>
+        <div class="upload-panel">
+            <form class="form-inline">
+            <a class="upload-file-link btn" href="javascript:">
+            Choose File...
+            <input type="file" class="upload-file" accept=".mp3,audio/*" size="40">
+            </a>
+            &nbsp;<label class="upload-file-name"></label>
+            </form>
+        </div>
+        <div class="upload-conflict hide">
+            <p>A file with the same name already exists.</p>
+            <label class="radio upload-conflict-replace">
+                <input type="radio" name="upload_modal_conflict" value="replace">Replace existing file
+            </label>
+            <div>
+            <label class="radio inline upload-conflict-rename">
+                <input type="radio" name="upload_modal_conflict" value="rename">Save file as:
+                <input class="upload-rename-as" type="text" size="40">
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="javascript:;" class="btn" data-dismiss="modal">Cancel</a>
+        <a href="javascript:;" id="upload_upload" class="btn btn-primary upload">Upload</a>
+    </div>
+    <!-- progress -->
+    <div class="modal-progress hide">
+        <div>
+            <div>
+                <i class="icon-spinner icon-4x icon-spin"></i>
+                <p><span class="modal-msg"></span>...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Line //-->
 <div id="line_opt_modal" class="modal hide fade" data-backdrop="static">
     <div class="modal-header">
