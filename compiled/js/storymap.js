@@ -1,4 +1,4 @@
-/* storymapjs - v2021-10-05-18-00-17 - 2021-10-05
+/* storymapjs - v2021-10-06-15-59-35 - 2021-10-06
  * Copyright (c) 2021 Northwestern University Knight Lab
  */
 
@@ -5997,6 +5997,66 @@ VCO.Media.Mp3 = VCO.Media.extend({
 });
 
 /* **********************************************
+     Begin VCO.Media.Padlet.js
+********************************************** */
+
+/*	VCO.Media.Padlet
+================================================== */
+
+VCO.Media.Padlet = VCO.Media.extend({
+
+	includes: [VCO.Events],
+
+	/*	Load the media
+	================================================== */
+	_loadMedia: function() {
+		var api_url,
+			self = this;
+
+		// Loading Message
+		this.message.updateMessage(VCO.Language.messages.loading + " " + this.options.media_name);
+
+		// Create Dom element
+		this._el.content_item	= VCO.Dom.create("div", "vco-media-item vco-media-iframe vco-media-padlet vco-media-shadow", this._el.content);
+
+		// Get Media ID
+		this.media_id = this.data.url.split("/");
+        this.media_id = this.media_id[this.media_id.length-1]
+        console.log(this.media_id)
+		// API URL
+		api_url = "https://padlet.com/embed/" + this.media_id + "";
+        // frameborder="0" allow="camera;microphone;geolocation" style="width:100%;height:608px;display:block;padding:0;margin:0
+		this.player = VCO.Dom.create("iframe", "", this._el.content_item);
+		this.player.width 		= "100%";
+		this.player.height 		= "100%";
+		this.player.frameBorder = "0";
+		this.player.src 		= api_url;
+
+		// After Loaded
+		this.onLoaded();
+	},
+
+	// Update Media Display
+	_updateMediaDisplay: function() {
+		// this._el.content_item.style.height = VCO.Util.ratio.r16_9({w:this._el.content_item.offsetWidth}) + "px";
+
+	},
+
+	_stopMedia: function() {
+
+		// try {
+		// 	this.player.contentWindow.postMessage(JSON.stringify({method: "pause"}), "https://player.vimeo.com");
+		// }
+		// catch(err) {
+		// 	trace(err);
+		// }
+
+	}
+
+});
+
+
+/* **********************************************
      Begin VCO.Media.SoundCloud.js
 ********************************************** */
 
@@ -7132,6 +7192,15 @@ VCO.Slide = VCO.Class.extend({
 		} else if (this.has.text || this.has.headline) {
 			this._el.container.className += ' vco-slide-text-only';
 			this._text.addTo(this._el.content);
+		}
+
+		if(this.data.media.mp3){
+			var audio = document.createElement("audio");
+			audio.controls = true;
+			var source = document.createElement("source");
+			source.src = this.data.media.mp3;
+			audio.append(source);
+			this._el.content.append(audio)
 		}
 		
 		// Fire event that the slide is loaded
@@ -17810,6 +17879,7 @@ L.TileLayer.include({
 	// @codekit-prepend "media/types/VCO.Media.IFrame.js";
 	// @codekit-prepend "media/types/VCO.Media.Image.js";
 	// @codekit-prepend "media/types/VCO.Media.Mp3.js";
+	// @codekit-prepend "media/types/VCO.Media.Padlet.js";
 	// @codekit-prepend "media/types/VCO.Media.SoundCloud.js";
 	// @codekit-prepend "media/types/VCO.Media.Storify.js";
 	// @codekit-prepend "media/types/VCO.Media.Text.js";
