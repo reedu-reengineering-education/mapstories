@@ -2,56 +2,31 @@
   {
     "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/test/index.html",
     "thumbnail": "https://vamos-muenster.de/wp-content/uploads/2021/07/SliderMapstory.jpg",
-    "source_logo": "",
+    "source_logo": "/static/img/logos/logo_vamos.jpeg",
     "title": "Der Stoff, aus dem die Träume sind - Weg eines T-Shirts"
   },
   {
-    "link": "http://extras.thetimes.co.uk/public/2014/maps/25-02/Yanukovych_storymap.html",
-    "thumbnail": "https://media.knightlab.com/StoryMapJS/img/thumbnails/thetimes_victor_yanukovych.jpg",
-    "source": "The Times",
-    "source_logo": "https://media.knightlab.com/StoryMapJS/img/logos/logo_thetimes.png",
-    "title": "Yanukovych on the Run"
+    "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/test-2/index.html",
+    "thumbnail": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/test-2/_images/21-09-02_Titel%20Einstieg%20Jeder%206..gif",
+    "source_logo": "/static/img/logos/logo_vamos.jpeg",
+    "title": "Der Stoff, aus dem die Träume sind - Das Leben der Arbeiter:innen"
   },
   {
-    "link": "http://www.minnpost.com/stroll/2014/06/hockey-hip-hop-and-other-green-line-highlights",
-    "thumbnail": "https://media.knightlab.com/StoryMapJS/img/thumbnails/thumb_greenline.jpg",
-    "source": "MinnPost",
-    "source_logo": "https://media.knightlab.com/StoryMapJS/img/logos/logo_minn.png",
-    "title": "Hockey, Hip-hop, and Other Green Line Highlights"
+    "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/der-stoff-aus-dem-die-traume-sind-umwelteinflusse/index.html",
+    "thumbnail": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/der-stoff-aus-dem-die-traume-sind-umwelteinflusse/_images/21-09-03_Titel%20Umwelteinfl%C3%BCsse.jpg",
+    "source_logo": "/static/img/logos/logo_vamos.jpeg",
+    "title": "Der Stoff, aus dem die Träume sind - Umwelteinflüsse"
   },
   {
-    "link": "http://thecityjournal.net/data-alex-tutorial/0-89-million-pounds-expensive-transfers-football-history/",
-    "thumbnail": "https://media.knightlab.com/StoryMapJS/img/thumbnails/thumb_football.png",
-    "source": "The City Journal",
-    "source_logo": "https://media.knightlab.com/StoryMapJS/img/logos/logo_city_journal.png",
-    "title": "From 0-89 Million Pounds - The Most Expensive Transfers in Football History"
+    "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/der-stoff-aus-dem-die-traume-sind-transport-und-marketing-der-kleidung/index.html",
+    "thumbnail": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/der-stoff-aus-dem-die-traume-sind-transport-und-marketing-der-kleidung/_images/02-09-21_Titel Transportwege.gif",
+    "source_logo": "/static/img/logos/logo_vamos.jpeg",
+    "title": "Der Stoff, aus dem die Träume sind - Transport und Marketing der Kleidung"
   },
   {
-    "link": "https://www.georgiahumanities.org/southern-literary-trail-story-map/",
+    "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/alternative-handlungsmoglichkeiten/index.html",
     "thumbnail": "https://media.knightlab.com/StoryMapJS/img/thumbnails/thumb_southern_literary.jpg",
-    "source": "Georgia Humanities",
-    "source_logo": "https://media.knightlab.com/StoryMapJS/img/logos/ga_humanities_oneliner.png",
-    "title": "Southern Literary Trail"
-  },
-  {
-    "link": "https://publications.newberry.org/time-machine/",
-    "thumbnail": "https://media.knightlab.com/StoryMapJS/img/thumbnails/midwest_time_machine.jpg",
-    "source": "Newberry Library",
-    "source_logo": "https://media.knightlab.com/StoryMapJS/img/logos/logo_newberry.png",
-    "title": "Midwest Time Machine"
-  },
-  {
-    "link": "https://storymap.knightlab.com/examples/aryas-journey/",
-    "thumbnail": "https://media.knightlab.com/StoryMapJS/img/thumbnails/knightlab_arya.png",
-    "source": "Knight Lab",
-    "source_logo": "https://cdn.knightlab.com/libs/orangeline/latest/assets/logo-knightlab.png",
-    "title": "Game of Thrones: Arya's Journey"
-  },
-  {
-    "link": "https://storymap.knightlab.com/examples/bosch-garden/",
-    "thumbnail": "https://media.knightlab.com/StoryMapJS/img/thumbnails/knightlab_bosch.png",
-    "source": "Knight Lab",
-    "source_logo": "https://cdn.knightlab.com/libs/orangeline/latest/assets/logo-knightlab.png",
-    "title": "Hieronymus Bosch: Garden of Earthly Delights"
+    "source_logo": "/static/img/logos/logo_vamos.jpeg",
+    "title": "Alternative Handlungsmöglichkeiten"
   }
 ]
