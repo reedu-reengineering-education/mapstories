@@ -611,6 +611,8 @@ VCO.StorySlider = VCO.Class.extend({
 	},
 
 	_initData: function() {
+		console.log("INIIIT DATA YOOO")
+		console.log(this.data);
 		// Create Slides and then add them
 		this._createSlides(this.data.slides);
 	},

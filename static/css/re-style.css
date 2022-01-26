@@ -49,7 +49,10 @@ img.re-logo {
 
 .header-product, .navbar-subnav {
     background-color: white !important;
-    border-bottom: none !important;
+}
+
+.header-product {
+    border-bottom: 0 !important;
 }
 
 .re-footer {
@@ -77,4 +80,17 @@ img.re-logo {
 }
 .image-link:hover {
     transform: scale(1.05);
+}
+
+.navbar-fixed--top {
+    border-bottom: 1px solid #d4d4d4 !important;
+  }
+
+
+.re-sub-header {
+    opacity: 0.6;
+}
+
+.example-grid {
+    padding-top: 1.2em;
 }
