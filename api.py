@@ -873,6 +873,22 @@ def allmaps():
     maps = find_all_storymaps()
     return render_template('allmaps.html', maps=maps)
 
+@app.route("/galerie/")
+def galerie():
+    return render_template('galerie.html')
+
+@app.route("/anleitungen/")
+def anleitungen():
+    return render_template('anleitungen.html')
+
+@app.route("/about/")
+def about():
+    return render_template('about.html')
+
+@app.route("/faq/")
+def faq():
+    return render_template('faq.html')
+
 @app.route("/gigapixel/")
 def gigapixel():
     return render_template('gigapixel.html')
