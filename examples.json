@@ -1,31 +1,31 @@
 [
   {
     "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/test/index.html",
-    "thumbnail": "https://vamos-muenster.de/wp-content/uploads/2021/07/SliderMapstory.jpg",
+    "thumbnail": "/static/img/galerie/derWegEinesTshirts.jpg",
     "source_logo": "/static/img/logos/logo_vamos.jpeg",
     "title": "Der Stoff, aus dem die Träume sind - Weg eines T-Shirts"
   },
   {
     "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/test-2/index.html",
-    "thumbnail": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/test-2/_images/21-09-02_Titel%20Einstieg%20Jeder%206..gif",
+    "thumbnail": "/static/img/galerie/1.jpg",
     "source_logo": "/static/img/logos/logo_vamos.jpeg",
     "title": "Der Stoff, aus dem die Träume sind - Das Leben der Arbeiter:innen"
   },
   {
     "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/der-stoff-aus-dem-die-traume-sind-umwelteinflusse/index.html",
-    "thumbnail": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/der-stoff-aus-dem-die-traume-sind-umwelteinflusse/_images/21-09-03_Titel%20Umwelteinfl%C3%BCsse.jpg",
+    "thumbnail": "/static/img/galerie/2.jpg",
     "source_logo": "/static/img/logos/logo_vamos.jpeg",
     "title": "Der Stoff, aus dem die Träume sind - Umwelteinflüsse"
   },
   {
     "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/der-stoff-aus-dem-die-traume-sind-transport-und-marketing-der-kleidung/index.html",
-    "thumbnail": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/der-stoff-aus-dem-die-traume-sind-transport-und-marketing-der-kleidung/_images/02-09-21_Titel Transportwege.gif",
+    "thumbnail": "/static/img/galerie/transportwege.jpg",
     "source_logo": "/static/img/logos/logo_vamos.jpeg",
     "title": "Der Stoff, aus dem die Träume sind - Transport und Marketing der Kleidung"
   },
   {
     "link": "https://uploads.mapstories.de/uploads.mapstories.de/mapstories/98ce81eb-38e6-408e-b089-50f76e7ec6b2/alternative-handlungsmoglichkeiten/index.html",
-    "thumbnail": "https://media.knightlab.com/StoryMapJS/img/thumbnails/thumb_southern_literary.jpg",
+    "thumbnail": "/static/img/galerie/alternativeHandlungswege.jpg",
     "source_logo": "/static/img/logos/logo_vamos.jpeg",
     "title": "Alternative Handlungsmöglichkeiten"
   }
