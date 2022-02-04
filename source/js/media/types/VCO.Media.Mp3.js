@@ -10,20 +10,17 @@ VCO.Media.Mp3 = VCO.Media.extend({
 	/*	Load the media
 	================================================== */
 	_loadMedia: function() {
-        console.log("LOADING MP3")
 		var self = this;
 		// Loading Message
 		this.message.updateMessage(VCO.Language.messages.loading + " " + this.options.media_name);
 		
-		console.log(this._el);
 		// Link
 		if (this.data.link) {
 			this._el.content_link 				= VCO.Dom.create("a", "", this._el.content);
 			this._el.content_link.href 			= this.data.link;
 			this._el.content_link.target 		= "_blank";
 		}
-		// } else {
-        // }
+		
 		let audio = VCO.Dom.create('audio', 'vco-media-mp3 controls', this._el.content)
         this._el.content_item				= VCO.Dom.create("source", "test", audio);
 		

@@ -1,37 +1,42 @@
 [
   {
       "slug": "",
-      "question": "What CMS does StoryMapJS work on?",
-      "answer": "<ul><li>Custom sites</li><li>Wordpress</li><li>Squarespace</li><li>Wix</li></ul><p>Please let us know if you have tried it on others and it works, so that we can add to the list.</p>"
+      "question": "Wie kann ich Mapstories nutzen?",
+      "answer": "<ul><li>a.) Du kannst dich anmelden und eine eigene Geschichte erstellen.</li><li>b.) Du kannst dir fertige Mapstories in der Galerie ansehen und dich von den Themen inspirieren lassen.</li></ul>"
   },
   {
       "slug": "",
-      "question": "Why aren't my Google Drive or DropBox Zoomify images working?",
-      "answer": "<p>Unfortunately, Google has <a href='http://googleappsdeveloper.blogspot.com/2015/08/deprecating-web-hosting-support-in.html'>deprecated web hosting in Google Drive</a>, which means that Zoomify images hosted on Google Drive. will no longer display. Dropbox has similary <a href='https://www.dropbox.com/help/16'>discontinued rendering content in public folders</a>, so this method will cause problems for many users as well.</p> <p>We find that many people aren't familiar with web image hosting, so we've written up instructions for two solutions so far: hosting on <a href='https://github.com/NUKnightLab/StoryMapJS/blob/master/AWS_Hosting/AWS_Hosting.md'>Amazon Web Services</a>, and on <a href='https://github.com/NUKnightLab/StoryMapJS/blob/master/GITHUB_HOSTING/GITHUB_HOSTING.md'>Github</a>.</p>"
+      "question": "Wofür kann ich Mapstories nutzen?",
+      "answer": "<p>Eigentlich für alles. Besonders gut kannst du Mapstories für Geschichten nutzen, die an unterschiedlichen Orten (der Welt) spielen und wo die Orte irgendwie zusammenhängen. Das sind vor allem Lieferketten, Migrationswege und globale Vernetzungen.<br>Ein paar Beispiele.<ul><li>Was sind Stationen deines Schul- oder Arbeitswegs?</li><li>Wo kommt das Holz meines Stuhls genau her?</li><li>Woher kommt mein T-Shirt und die Einzelteile (Garn, Farben, etc.) und wie leben die Menschen vor Ort?</li><li>Wo kommt der Orangensaft her und wie leben die Pflücker:innen und wie geht es der Umwelt dort?</li><li>Woher sind meine Großeltern damals nach Deutschland gezogen und welche Orte und Geschichten liegen dazwischen?</li><li>Wo leben eigentlich andere Aktivist:innen in der Welt?</li><li>Wo sind überall in der Welt ausgetrocknete Seen und was wird dagegen getan?</li></ul></p>"
   },
   {
       "slug": "",
-      "question": "Why are my DropBox images not showing",
-      "answer": "<p>First the image must be in the public folder.</p><p>To get the image URL change the domain name from the link that dropbox creates.</p><p><strong>Incorrect:</strong> <code>https://www.dropbox.com/s/38053034/GOT%20Storymap%20images/jon-weirwood-tree.jpg</code></p><p><strong>Correct:</strong> <code>https://dl.dropboxusercontent.com/u/38053034/GOT%20Storymap%20images/jon-weirwood-tree.jpg</code></p>"
+      "question": "Kann ich Mapstories kostenlos nutzen?",
+      "answer": "<p>Ja, das Tool ist kostenlos.</p>"
   },
   {
       "slug": "",
-      "question": "How can I have a map without the lines between points?",
-      "answer": "To disable connecting lines on maps, use the StoryMap option: <code>Treat as Image</code> <em>(as opposed to the default, <code>Treat as Cartography</code>)</em>"
+      "question": "In welchen Browsern funktioniert Mapstories?",
+      "answer": "<p>Mapstories funktioniert in alle gängigen Browsern. Es ist vollständig webbasiert, eine Installation ist also nicht notwendig.</p>"
   },
   {
       "slug": "",
-      "question": "How can I link to a specific slide?",
-      "answer": "<p>You can add a parameter to the URL that is the value of the iframe src attribute, <code>start_at_slide</code>. Its value should be a number from 0 to one less than the total number of slides in the storymap.</p> <p><strong>For example:</strong> <code>http://cdn.knightlab.com/libs/storymapjs/latest/embed/?url=//media.knightlab.com/StoryMapJS/demo/sochi.json&start_at_slide=5</code></p><p>This should load <q>Sochi 2014 Olympic Torch Relay Highlights: Slide 5.</q></p>"
+      "question": "Wie kann ich Rückmeldungen an die Entwickler von Mapstories.de senden, z.B. wenn etwas nicht funktioniert?",
+      "answer": "<p>Einfach in das folgende Padlet eintragen: <a href='https://padlet.com/VamosMuenster/na6zu0k77l37gvdz'>https://padlet.com/VamosMuenster/na6zu0k77l37gvdz</a></p>"
   },
   {
       "slug": "",
-      "question": "How can I use a custom map?",
-      "answer": "<p>Choose <code>options</code> from the top left of the StoryMap window, then from the <code>map type</code> menu choose the type you like.</p> <p>Select <code>Mapbox</code> to enter the ID of your Mapbox map.</p> Select <code>custom</code> to enter the URL for a tile server. If the server supports multiple subdomains, enter them as a single string in the Subdomain field (e.g. subdomains 'a', 'b', and 'c' should be entered as 'abc')."
+      "question": "Was braucht es, um eine Story an Freund:innen weiterzuleiten?",
+      "answer": "<p>Einfach auf “Teilen” gehen und den Link über alle gängigen Apps versenden.</p>"
   },
   {
       "slug": "",
-      "question": "How can I adjust the zoom?",
-      "answer": "<p>To keep it simple for most users, we've made some assumptions in the authoring tool which may not universally apply. For example, the first screen is always an <code>overview</code> slide. Also, the zoom is affected by the overall size of the map and the relationship between the current and previous points on the map.</p> <p>It's possible to download the configuration (a JSON file) that the authoring tool makes and edit the JSON yourself. You could then change the first slide to not be an <code>overview</code> and manually set a starting lat/lon/zoom.</p> <p>Be aware that switching back and forth between editing within and outside the authoring tool can get messy, so we suggest using our <a href='https://storymap.knightlab.com/advanced/'>advanced</a> method to have maximum control over the zoom feature and more.</p>"
+      "question": "Kann ich eine Mapstory in eine Website einbetten?",
+      "answer": "<p>Ja, das ist möglich. Beim Button “Teilen” findet sich der Einbettungscode. Die Größe kannst du dort angepasst an deine Seite selbst einstellen.</p>"
+  },
+  {
+      "slug": "",
+      "question": "Kann ich meine Mapstory abspeichern?",
+      "answer": "<p>Deine Mapstory wird automatisch in deinem Account gespeichert. Du kannst sie also abrufen und bearbeiten, sobald du dich eingeloggt hast.</p>"
   }
 ]
