@@ -3,7 +3,30 @@
         <h2>Der Stoff aus dem die Träume sind</h2>
         <h5 class="re-sub-header">TrikotTausch #whomademyclothes</h5>
         <div class="example-grid">
-        {% for example in examples %}
+        {% for example in stoff %}
+        {#
+            Add/edit examples in the examples.json file.
+            Depends upon inject_index_data in app.py for these to be available to render.
+        #}
+        <div class="grid-item">
+            <a href="{{ example.link }}" class="button button-light" target="_blank">
+                <figure class="examples">
+                    <img src="{{ example.thumbnail }}" alt="{{ example.title }}">
+                </figure>
+                <img src="{{ example.source_logo }}" alt="{{ example.source }}" class="logo-inline">
+                <h4>{{ example.title }}</h4>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+</section>
+
+<section class="section-color fill-color-grey--lightest" id="examples">
+    <div class="container">
+        <h2>Gründung des Bundesministeriums für Schrumpfung, Glück und ein gutes Leben für Alle</h2>
+        <h5 class="re-sub-header">KonsumWandel - Wir können auch anders</h5>
+        <div class="example-grid">
+        {% for example in konsum %}
         {#
             Add/edit examples in the examples.json file.
             Depends upon inject_index_data in app.py for these to be available to render.

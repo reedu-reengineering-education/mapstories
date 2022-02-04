@@ -71,7 +71,8 @@ else:
 
 app.config['LOCAL_STORAGE_MODE'] = settings.LOCAL_STORAGE_MODE
 app.config['TEST_MODE'] = settings.TEST_MODE
-examples_json = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'examples.json')
+stoff_json = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stoff.json')
+konsum_json = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'konsum.json')
 faq_json = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'faq.json')
 
 _GOOGLE_OAUTH_SCOPES = [
@@ -124,16 +125,21 @@ def inject_urls():
 
 @app.context_processor
 def inject_index_data():
-    examples = json.load(open(examples_json))
+    stoff = json.load(open(stoff_json))
+    konsum = json.load(open(konsum_json))
     # note this appears elsewhere and should probably be done once
     # but I'm feeling lazy right now
     static_url = settings.STATIC_URL or app.static_url_path 
-    for e in examples:
+    for e in stoff:
+        for key in ["link","thumbnail","source_logo"]:
+            if not e[key].startswith('http'):
+                e[key] = urljoin(static_url,e[key])
+    for e in konsum:
         for key in ["link","thumbnail","source_logo"]:
             if not e[key].startswith('http'):
                 e[key] = urljoin(static_url,e[key])
 
-    return dict(examples=examples,faqs=json.load(open(faq_json)))
+    return dict(stoff=stoff,konsum=konsum,faqs=json.load(open(faq_json)))
 
 class APIEncoder(json.JSONEncoder):
     def default(self, obj):
