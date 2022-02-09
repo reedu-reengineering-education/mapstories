@@ -13,6 +13,15 @@ h2.product-tagline, .container, #overview, .re-button {
     font-family: BrixSlab !important;
 }
 
+.product-tagline {
+    color: unset !important;
+}
+
+.navbar.navbar-subnav .button {
+    color: #df4e13;
+    font-size: 20px;
+}
+
 
 .re-button {
     border: 4px solid #38383a !important;
@@ -52,7 +61,7 @@ img.re-logo {
 }
 
 .header-product {
-    border-bottom: 0 !important;
+    /* border-bottom: 0 !important; */
 }
 
 .re-footer {
