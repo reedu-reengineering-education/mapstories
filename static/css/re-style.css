@@ -13,6 +13,10 @@ h2.product-tagline, .container, #overview, .re-button {
     font-family: BrixSlab !important;
 }
 
+.container h5, .container h3 , .container h2{
+    font-family: BrixSlab !important;
+}
+
 .product-tagline {
     color: unset !important;
 }
@@ -20,6 +24,7 @@ h2.product-tagline, .container, #overview, .re-button {
 .navbar.navbar-subnav .button {
     color: #df4e13;
     font-size: 20px;
+    font-family: BrixSlab !important;
 }
 
 
@@ -102,4 +107,15 @@ img.re-logo {
 
 .example-grid {
     padding-top: 1.2em;
+}
+
+.re-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.re-tutorial-section {
+    padding-bottom: 3em;
+    padding-top: 2em;
 }
