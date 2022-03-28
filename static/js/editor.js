@@ -133,7 +133,7 @@ function format_navigator_info() {
 }
 
 function format_report_link(subject, error_msg, error_stack) {
-    var subject = 'StoryMapJS Editor Report ('+subject+')';
+    var subject = 'Mapstories Editor Report ('+subject+')';
     var body = 'Please describe what you were doing when this error occurred:\n\n\n'
             + '---DIAGNOSTICS---\n'
             + error_msg+'\n'

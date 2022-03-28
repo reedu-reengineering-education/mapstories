@@ -1,5 +1,5 @@
-/* storymapjs - v2021-10-06-15-59-35 - 2021-10-06
- * Copyright (c) 2021 Northwestern University Knight Lab
+/* storymapjs - v2022-03-28-13-41-34 - 2022-03-28
+ * Copyright (c) 2022 Northwestern University Knight Lab
  */
 
 /* **********************************************
@@ -5956,20 +5956,17 @@ VCO.Media.Mp3 = VCO.Media.extend({
 	/*	Load the media
 	================================================== */
 	_loadMedia: function() {
-        console.log("LOADING MP3")
 		var self = this;
 		// Loading Message
 		this.message.updateMessage(VCO.Language.messages.loading + " " + this.options.media_name);
 		
-		console.log(this._el);
 		// Link
 		if (this.data.link) {
 			this._el.content_link 				= VCO.Dom.create("a", "", this._el.content);
 			this._el.content_link.href 			= this.data.link;
 			this._el.content_link.target 		= "_blank";
 		}
-		// } else {
-        // }
+		
 		let audio = VCO.Dom.create('audio', 'vco-media-mp3 controls', this._el.content)
         this._el.content_item				= VCO.Dom.create("source", "test", audio);
 		
@@ -8063,6 +8060,8 @@ VCO.StorySlider = VCO.Class.extend({
 	},
 
 	_initData: function() {
+		console.log("INIIIT DATA YOOO")
+		console.log(this.data);
 		// Create Slides and then add them
 		this._createSlides(this.data.slides);
 	},
