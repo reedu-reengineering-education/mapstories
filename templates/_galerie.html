@@ -18,8 +18,8 @@
         {#
             Add/edit examples in the examples.json file.
             Depends upon inject_index_data in app.py for these to be available to render.
-        #}
-        <div class="grid-item">
+            #}
+            <div class="grid-item">
             <a href="{{ example.link }}" class="button button-light" target="_blank">
                 <figure class="examples">
                     <img src="{{ example.thumbnail }}" alt="{{ example.title }}">
@@ -51,7 +51,37 @@
             Das Modul wurde von Jugendlichen zusammen mit Vamos über mehrere Monate in einem ko-kreativen Lab entwickelt. Es finden sich viele Perspektiven der Jugendlichen in Form von Audio Inputs wieder. Das digitale Modul kann als Einzel- oder Gruppenarbeit in ca. 90 Minuten angeboten werden und eignet sich zur Vorbereitung der Durchführung der Bildungstasche „KonsumWandel“.
         </p>
         <div class="example-grid">
-        {% for example in konsum %}
+            {% for example in konsum %}
+            {#
+            Add/edit examples in the examples.json file.
+            Depends upon inject_index_data in app.py for these to be available to render.
+            #}
+            <div class="grid-item">
+                <a href="{{ example.link }}" class="button button-light" target="_blank">
+                <figure class="examples">
+                    <img src="{{ example.thumbnail }}" alt="{{ example.title }}">
+                </figure>
+                <img src="{{ example.source_logo }}" alt="{{ example.source }}" class="logo-inline">
+                <h4>{{ example.title }}</h4>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section-color fill-color-grey--lightest" id="examples">
+    <div class="container">
+        <h2>Hofgeschichten - Ein Einblick in den Alltag landwirtschaftlicher Betriebe</h2>
+        <h5 class="re-sub-header">Extra.Klasse - evang. Jugendbildungsstätte Tecklenburg</h5>
+        <br>
+        <iframe src="https://player.vimeo.com/video/782037709?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="100%" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <br>
+        <br>
+        <p>
+            Jugendliche von „Extra.Klasse“, einem außerschulischen Lernstandort erzählen im Projekt „Hofgeschichten“ von ihren Einblicken in das Leben und Arbeiten in landwirtschaftlichen Betrieben. Dazu besucht die fiktive Reporterin Ari die Höfe rund um die Stadt Lengerich im nördlichen Münsterland und befragt die Besitzer:innen zu Themen der Lebensmittel- und Energieproduktion im Kontext von Nachhaltigkeit. Eine Kooperation von Lokale Medienarbeit NRW und der Evangelischen Jugendbildungsstätte in Tecklenburg.
+        </p>
+        <div class="example-grid">
+        {% for example in hofgeschichten %}
         {#
             Add/edit examples in the examples.json file.
             Depends upon inject_index_data in app.py for these to be available to render.
